@@ -233,7 +233,6 @@ class sede {
                 $fila++;
             }
             //
-            //
             $datos[0] = $datosTemp;
             $datos[1] = $datosG;
             //

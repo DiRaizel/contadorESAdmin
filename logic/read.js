@@ -169,6 +169,7 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'sedesE') {
         //
+        cargarSelectDepartamentos();
         cargarTablaSedesE();
         //
         $('#btnSedesEMenu').addClass('active');

@@ -108,6 +108,11 @@ function guardarSede() {
     formData.append('idUsu', sessionStorage.idUsu);
     formData.append('idEmp', sessionStorage.idEmp);
     //
+    if (sessionStorage.idUsu != 1) {
+        //
+        formData.append('empresa', sessionStorage.idEmp);
+    }
+    //
     $.ajax({
         url: 'controllers/create.php',
         type: 'post',
@@ -123,7 +128,13 @@ function guardarSede() {
             $("#formNuevaSede")[0].reset();
             $('#modalNuevaSede').modal('hide');
             //
-            cargarTablaSedesS();
+            if (sessionStorage.idUsu == 1) {
+                //
+                cargarTablaSedesS();
+            } else {
+                //
+                cargarTablaSedesE();
+            }
             //
             swal("Atención", "Guardado!");
             //

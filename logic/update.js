@@ -211,7 +211,7 @@ function actualizarEstadoSede(valor, valor2) {
                 cargarTablaSedesS();
             } else {
                 //
-                cargarTablaSedes();
+                cargarTablaSedesE();
             }
         } else {
             //
@@ -252,7 +252,7 @@ function editarSede() {
                 cargarTablaSedesS();
             } else {
                 //
-                cargarTablaSedes();
+                cargarTablaSedesE();
             }
             //
             swal("Atención", "Editada!");

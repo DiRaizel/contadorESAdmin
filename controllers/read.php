@@ -89,7 +89,7 @@ if ($_POST['accion'] === 'login') {
     //
     echo json_encode($rsp);
     //
-}else if ($_POST['accion'] === 'cargarUsuarioaEditar') {
+} else if ($_POST['accion'] === 'cargarUsuarioaEditar') {
     //
     $idUsu = (int) $_POST['idUsu'];
     //
@@ -97,7 +97,7 @@ if ($_POST['accion'] === 'login') {
     //
     echo json_encode($rsp);
     //
-}else if ($_POST['accion'] === 'cargarTablasHome') {
+} else if ($_POST['accion'] === 'cargarTablasHome') {
     //
     $idUsu = (int) $_POST['idUsu'];
     $idEmp = (int) $_POST['idEmp'];

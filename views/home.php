@@ -38,26 +38,26 @@
                                 </div>
                                 <div class="card-body">
                                     <table id="tablaSedesHome" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Ciudad</th>
-                                            <th>Poblacion</th>
-                                            <th># Entradas</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bodyTablaSedesHome" class="bodyTabla">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Ciudad</th>
+                                                <th>Poblacion</th>
+                                                <th># Entradas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bodyTablaSedesHome" class="bodyTabla">
 
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Ciudad</th>
-                                            <th>Poblacion</th>
-                                            <th># Entradas</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Ciudad</th>
+                                                <th>Poblacion</th>
+                                                <th># Entradas</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -103,15 +103,9 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="" required>
-                                </div>
-                                <div class="col-6">
-                                    <label>Empresa</label>
-                                    <select class="form-control" name="empresa" id="empresa" required>
-
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -165,15 +159,9 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" value="" required>
-                                </div>
-                                <div class="col-6">
-                                    <label>Empresa</label>
-                                    <select class="form-control" name="empresa" id="empresae" required>
-
-                                    </select>
                                 </div>
                             </div>
                         </div>
