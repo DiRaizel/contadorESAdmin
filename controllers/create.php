@@ -73,4 +73,20 @@ if ($_POST['accion'] === 'guardarUsuario') {
         //
         echo 2;
     }
+    //
+} else if ($_POST['accion'] === 'guardarConfigSede') {
+    //
+    $idSed = $_POST['idSed'];
+    $idEmp = $_POST['idEmp'];
+    $max = $_POST['max'];
+    //
+    $rsp = $mSede->guardarConfigSede($idSed, $idEmp, $max);
+    //
+    if ($rsp) {
+        //
+        echo 1;
+    } else {
+        //
+        echo 2;
+    }
 }

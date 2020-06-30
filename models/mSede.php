@@ -16,13 +16,13 @@ class sede {
         if ($idUsu === 1) {
             //
             $sql = "select s.sed_id, s.sed_nombre, s.sed_estado, c.ciu_nombre, "
-                    . "e.emp_nombre from sede s join ciudad c on s.ciu_id = "
+                    . "e.emp_nombre, e.emp_id from sede s join ciudad c on s.ciu_id = "
                     . "c.ciu_id join empresa e on s.emp_id = e.emp_id "
                     . "order by s.sed_id asc";
         } else {
             //
             $sql = "select s.sed_id, s.sed_nombre, s.sed_estado, c.ciu_nombre, "
-                    . "e.emp_nombre from sede s join ciudad c on s.ciu_id = "
+                    . "e.emp_nombre, e.emp_id from sede s join ciudad c on s.ciu_id = "
                     . "c.ciu_id join empresa e on s.emp_id = e.emp_id where "
                     . "e.emp_id = $idEmp order by s.sed_id asc";
         }
@@ -42,6 +42,7 @@ class sede {
                     'idSed' => $row['sed_id'],
                     'nombre' => $row['sed_nombre'],
                     'empresa' => $row['emp_nombre'],
+                    'idEmp' => $row['emp_id'],
                     'ciudad' => $row['ciu_nombre'],
                     'estado' => $row['sed_estado']
                 );
@@ -92,6 +93,30 @@ class sede {
         //
         $rsp = mysqli_query($con, "insert into sede values (null, "
                 . "'$nombre', 'Activa', $ciudad, $empresa)");
+        //
+        return $rsp;
+    }
+
+    //
+    function guardarConfigSede($idSed, $idEmp, $max) {
+        //
+        require '../models/config.php';
+        mysqli_set_charset($con, 'utf8');
+        //
+        $rspV = mysqli_query($con, "SELECT con_id from configuracion where "
+                . "emp_id = $idEmp and sed_id = $idSed");
+        //
+        $rsp = false;
+        //
+        if (mysqli_num_rows($rspV) > 0) {
+            //
+            $rsp = mysqli_query($con, "update configuracion set con_max = $max"
+                    . " where emp_id = $idEmp and sed_id = $idSed");
+        } else {
+            //
+            $rsp = mysqli_query($con, "insert into configuracion values (null, "
+                    . "$max, $idEmp, $idSed)");
+        }
         //
         return $rsp;
     }
@@ -183,6 +208,34 @@ class sede {
                     'sql' => 1,
                     'idSed' => $row['sed_id'],
                     'nombre' => $row['sed_nombre']
+                ));
+            }
+            //
+            return $datos;
+        } else {
+            //
+            return $datos;
+        }
+    }
+
+    //
+    function cargarCofigSede($idSed) {
+        //
+        require '../models/config.php';
+        mysqli_set_charset($con, 'utf8');
+        //
+        $rsp = mysqli_query($con, "SELECT con_max from configuracion where"
+                . " sed_id = $idSed ");
+        //
+        $datos = array();
+        //
+        if (mysqli_num_rows($rsp) > 0) {
+            //
+            while ($row = mysqli_fetch_assoc($rsp)) {
+                //
+                array_push($datos, array(
+                    'sql' => 1,
+                    'max' => $row['con_max']
                 ));
             }
             //

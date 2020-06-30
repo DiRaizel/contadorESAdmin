@@ -175,9 +175,12 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-2 offset-10">
-                                <!--<button  type="submit" class="btn btn-primary">Submit</button>-->
+                            <div class="col-8"></div>
+                            <div class="col-2" style="text-align: right">
                                 <a style="color: white;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                            </div>
+                            <div class="col-2">
+                                <!--<button  type="submit" class="btn btn-primary">Submit</button>-->
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </div>
@@ -271,9 +274,12 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-2 offset-10">
-                                <!--<button  type="submit" class="btn btn-primary">Submit</button>-->
+                            <div class="col-8"></div>
+                            <div class="col-2" style="text-align: right">
                                 <a style="color: white;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                            </div>
+                            <div class="col-2">
+                                <!--<button  type="submit" class="btn btn-primary">Submit</button>-->
                                 <button type="submit" class="btn btn-primary">Editar</button>
                             </div>
                         </div>

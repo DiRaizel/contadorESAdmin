@@ -147,3 +147,40 @@ function guardarSede() {
         swal("Atención", "Error al conectarse!");
     });
 }
+
+//
+function guardarConfigSede(){
+    //
+    var formElement = document.getElementById("formConfigSede");
+    formData = new FormData(formElement);
+    //
+    formData.append('accion', 'guardarConfigSede');
+    formData.append('idSed', idConfigSede);
+    formData.append('idEmp', idConfigSedeEmp);
+    //
+    $.ajax({
+        url: 'controllers/create.php',
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data === 1) {
+            //
+            $("#formConfigSede")[0].reset();
+            $('#modalConfigSede').modal('hide');
+            //
+            swal("Atención", "Guardado!");
+            //
+        } else if (data === 2) {
+            //
+            swal("Atención", "Error al guardar la configuracion!");
+        }
+    }).fail(function (data_error) {
+        console.log(data_error);
+        swal("Atención", "Error al conectarse!");
+    });
+}

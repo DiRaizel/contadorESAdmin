@@ -878,8 +878,7 @@ function cargarTablaSedesE() {
             },
             {
                 "render": function (data, type, JsonResultRow, meta) {
-                    return '<button  type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-configuracion-modal-xl"><i class="fas fa fa-cogs"></i></button>';
-//                    onclick="configurarSede(' + JsonResultRow.idSed + ')"
+                    return '<button onclick="cargarCofigSede(' + JsonResultRow.idSed + ',' + JsonResultRow.idEmp + ')" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-configuracion-modal-xl"><i class="fas fa fa-cogs"></i></button>';
                 }
             },
             {
@@ -907,6 +906,39 @@ function cargarTablaSedesE() {
         }
     });
 }
+
+//
+var idConfigSede = 0;
+var idConfigSedeEmp = 0;
+
+//
+function cargarCofigSede(valor, valor2) {
+    //
+    idConfigSede = valor;
+    idConfigSedeEmp = valor;
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            "idSed": valor,
+            "accion": "cargarCofigSede"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.length > 0) {
+            //
+            $('#max').val(data[0].max);
+            //
+        } else {
+            //
+            $('#max').val(0);
+        }
+    }).fail(function (data_error) {
+    });
+}
+
 //
 var idSedeaEditar = 0;
 

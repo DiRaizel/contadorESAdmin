@@ -106,4 +106,12 @@ if ($_POST['accion'] === 'login') {
     //
     echo json_encode($rsp);
     //
+} else if ($_POST['accion'] === 'cargarCofigSede') {
+    //
+    $idSed = (int) $_POST['idSed'];
+    //
+    $rsp = $mSede->cargarCofigSede($idSed);
+    //
+    echo json_encode($rsp);
+    //
 }
