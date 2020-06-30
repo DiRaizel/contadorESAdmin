@@ -107,14 +107,6 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-12">
-                                    <label for="telefono">Documento</label>
-                                    <input type="text" class="form-control" name="documento" placeholder="Documento" value="" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
                                 <div class="col-6">
                                     <label for="nombres">Nombres</label>
                                     <input type="text" class="form-control" name="nombres" placeholder="Nombres" value="" required>
@@ -128,25 +120,23 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="correo">Correo</label>
-                                    <input type="text" class="form-control" name="correo" placeholder="Correo" value="" required>
+                                    <label for="telefono">Documento</label>
+                                    <input type="text" class="form-control" name="documento" placeholder="Documento" value="" required>
                                 </div>
                                 <div class="col-6">
-                                    <label>Rol</label>
-                                    <select class="form-control" name="rol" required>
-                                        <option selected disabled>Selecciona</option>
-                                        <option value="Administrador">Administrador</option>
-                                        <option value="Funcionario">Funcionario</option>
-                                    </select>
+                                    <label for="correo">Correo</label>
+                                    <input type="text" class="form-control" name="correo" placeholder="Correo" value="" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label>Empresa</label>
-                                    <select onchange="cargarSelectSedes(1);" class="form-control" id="empresa" name="empresa" required>
-
+                                    <label>Rol</label>
+                                    <select class="form-control" name="rol" required>
+                                        <option selected disabled>Selecciona</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Funcionario">Funcionario</option>
                                     </select>
                                 </div>
                                 <div class="col-6">

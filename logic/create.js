@@ -13,6 +13,11 @@ function guardarUsuario() {
         //
         formData.append('accion', 'guardarUsuario');
         //
+        if (sessionStorage.idUsu != 1) {
+            //
+            formData.append('empresa', sessionStorage.idEmp);
+        }
+        //
         $.ajax({
             url: 'controllers/create.php',
             type: 'post',
@@ -28,7 +33,13 @@ function guardarUsuario() {
                 $("#formNuevoUsuario")[0].reset();
                 $('#modalNuevoUsuario').modal('hide');
                 //
-                cargarTablaUsuarios();
+                if (sessionStorage.idUsu != 1) {
+                    //
+                    cargarTablaUsuarios();
+                } else {
+                    //
+                    cargarTablaUsuariosE();
+                }
                 //}
                 swal("Atención", "Guardado!");
                 //
@@ -40,7 +51,8 @@ function guardarUsuario() {
                 swal("Atención", "Error correo ya se encuetra registrado!");
             }
         }).fail(function (data_error) {
-            console.log(data_error);s
+            console.log(data_error);
+            s
             swal("Atención", "Error al conectarse!");
         });
     }

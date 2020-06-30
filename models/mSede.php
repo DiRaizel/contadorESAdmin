@@ -24,7 +24,7 @@ class sede {
              $sql = "select s.sed_id, s.sed_nombre, s.sed_estado, c.ciu_nombre, "
                     . "e.emp_nombre from sede s join ciudad c on s.ciu_id = "
                     . "c.ciu_id join empresa e on s.emp_id = e.emp_id where "
-                     . "emp_id = $idEmp order by s.sed_id asc";
+                     . "e.emp_id = $idEmp order by s.sed_id asc";
         }
         //
         $rsp = mysqli_query($con, $sql);

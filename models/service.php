@@ -1,5 +1,7 @@
 <?php
 
+//http://localhost/contadorESAdmin/models/service.php?e=1&sd=&tp=3&id=1&res=0
+
 //
 date_default_timezone_set('America/Bogota');
 

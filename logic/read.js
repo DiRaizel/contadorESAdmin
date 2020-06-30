@@ -157,6 +157,7 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'usuariosE') {
         //
+        cargarSelectSedes(1);
         cargarTablaUsuariosE();
         //
         $('#btnUsuariosEMenu').addClass('active');

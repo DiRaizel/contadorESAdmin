@@ -29,7 +29,7 @@ function actualizarEstadoUsuario(valor, valor2) {
                 cargarTablaUsuariosS();
             } else {
                 //
-                cargarTablaUsuarios();
+                cargarTablaUsuariosE();
             }
         } else {
             //
