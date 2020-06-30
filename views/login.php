@@ -54,9 +54,9 @@
                 </div>-->
                 <!-- /.social-auth-links -->
 
-                <p class="mb-1">
+<!--                <p class="mb-1">
                     <a href="views/forgot-password.html">Olvide la contraseña</a>
-                </p>
+                </p>-->
             </div>
             <!-- /.login-card-body -->
         </div>

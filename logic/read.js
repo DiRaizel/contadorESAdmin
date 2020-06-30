@@ -34,6 +34,9 @@ function show5() {
 }
 
 //
+var intervaloHome;
+
+//
 $(document).ready(function () {
     //
 });
@@ -112,8 +115,8 @@ function cargarConfiguraciones() {
         $('#usuariosEMenu').css('display', 'none');
         $('#sedesEMenu').css('display', 'none');
         $('#configuracionEMenu').css('display', 'none');
+        $('#graficasEMenu').css('display', 'none');
         $('#reportesEMenu').css('display', 'none');
-        $('#reportesMenu').css('display', 'none');
     } else {
         //
         $('#usuariosMenu').css('display', 'none');
@@ -132,9 +135,16 @@ function cargarConfiguraciones() {
         }
     }
     //
+    clearInterval(intervaloHome);
+    //
     if (sessionStorage.location === 'home') {
         //
         cargarTablasHome();
+        //
+        intervaloHome = setInterval(function () {
+            //
+            cargarTablasHome();
+        }, 10000);
         //
         $('#btnHomeMenu').addClass('active');
         //
