@@ -187,11 +187,13 @@ function cargarConfiguraciones() {
     } else if (sessionStorage.location === 'graficaChartE') {
         //
         $('#btngraficasEMenu').addClass('active');
+        $('#graficasEMenu').addClass('menu-open');
         $('#btngraficaChartEMenu').addClass('active');
         //
     } else if (sessionStorage.location === 'graficaPieE') {
         //
         $('#btngraficasEMenu').addClass('active');
+        $('#graficasEMenu').addClass('menu-open');
         $('#btngraficaPieEMenu').addClass('active');
     }
 }
