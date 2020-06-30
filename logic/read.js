@@ -186,8 +186,6 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'configuracionE') {
         //
-
-        //
         $('#btnConfiguracionEMenu').addClass('active');
         //
     } else if (sessionStorage.location === 'reportesE') {
@@ -436,7 +434,7 @@ function cargarTablaUsuariosS() {
                 }
             }
         ],
-        scrollY: '58vh',
+        scrollY: '41vh',
         responsive: true,
         language: {
             "url": "libs/json/Spanish.json"
@@ -494,7 +492,7 @@ function cargarTablaUsuariosE() {
                 }
             }
         ],
-        scrollY: '58vh',
+        scrollY: '41vh',
         responsive: true,
         language: {
             "url": "libs/json/Spanish.json"
@@ -731,7 +729,7 @@ function cargarTablaEmpresas() {
                 }
             }
         ],
-        scrollY: '58vh',
+        scrollY: '41vh',
         responsive: true,
         language: {
             "url": "libs/json/Spanish.json"
@@ -847,7 +845,7 @@ function cargarTablaSedesS() {
                 }
             }
         ],
-        scrollY: '58vh',
+        scrollY: '41vh',
         responsive: true,
         language: {
             "url": "libs/json/Spanish.json"
@@ -902,7 +900,7 @@ function cargarTablaSedesE() {
                 }
             }
         ],
-        scrollY: '58vh',
+        scrollY: '41vh',
         responsive: true,
         language: {
             "url": "libs/json/Spanish.json"
