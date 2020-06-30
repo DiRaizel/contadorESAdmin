@@ -15,7 +15,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Grafica Pie 
+                            <h1 class="m-0 text-dark">Grafica Torta
                             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-nSede-modal-xl"><i class="fas fa-plus-circle"></i></button></h1>-->
                         </div><!-- /.col -->
                         <div class="col-sm-6">
@@ -39,15 +39,11 @@
                                     <div class="row">                                        
                                         <div class="col-4">
                                             <label>Fecha Inicial</label>
-                                            <select onchange="cargarSelectCiudad();" class="form-control" name="departamento" id="departamento" required>
-
-                                            </select>
+                                            <input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required>
                                         </div>
                                         <div class="col-4">
                                             <label>Fecha Final</label>
-                                            <select class="form-control" name="ciudad" id="ciudad" required>
-                                                <option selected disabled>Selecciona un departamento</option>
-                                            </select>
+                                            <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" required>
                                         </div>
                                     </div>
                                     <div class="row">

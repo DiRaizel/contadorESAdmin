@@ -80,7 +80,7 @@
                 </li>-->
                 <li class="nav-item" id="reportesEMenu">
                     <a href="#" onclick="ruta('reportesE')" class="nav-link" id="btnReportesEMenu">
-                        <i class="nav-icon fa fa-file-excel"></i>
+                        <i class="nav-icon fa fa-print"></i>
                         <p>
                             Reportes
                         </p>

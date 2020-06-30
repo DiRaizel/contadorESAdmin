@@ -15,12 +15,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Grafica Chart <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-nSede-modal-xl"><i class="fas fa-plus-circle"></i></button></h1>
+                            <h1 class="m-0 text-dark">Grafica Barras
+                            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-nSede-modal-xl"><i class="fas fa-plus-circle"></i></button></h1>-->
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#" onclick="ruta('home')">Home</a></li>
-                                <li class="breadcrumb-item active">Configuración</li>
+                                <li class="breadcrumb-item active">Grafica Pie</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -34,30 +35,29 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body" style="padding: 0px;">
-                                <table id="tablaSedes" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Ciudad</th>
-                                            <th>Estado</th>
-                                            <th>Editar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bodyTablaSedes" class="bodyTabla">
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Ciudad</th>
-                                            <th>Estado</th>
-                                            <th>Editar</th
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                                <!-- /.col-md-6 -->
+                                <div class="form-group">
+                                    <div class="row">                                        
+                                        <div class="col-4">
+                                            <label>Fecha Inicial</label>
+                                            <input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required>
+                                            <!--</input>-->
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Fecha Final</label>
+                                            <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" required>
+<!--                                            <select class="form-control" name="ciudad" id="ciudad" required>
+                                                <option selected disabled>Selecciona un departamento</option>
+                                            </select>-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
+                                            <div class="card col-12" style="height: 55vh">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- /.col-md-6 -->
