@@ -18,10 +18,10 @@ function actualizarEstadoUsuario(valor, valor2) {
             //
             if (valor2 === 2) {
                 //
-                alert('Usuario desactivado!');
+                swal("Atención", "Usuario desactivado!");
             } else {
                 //
-                alert('Usuario activado!');
+                swal("Atención", "Usuario activado!");
             }
             //
             if (sessionStorage.idUsu == 1) {
@@ -33,7 +33,7 @@ function actualizarEstadoUsuario(valor, valor2) {
             }
         } else {
             //
-            alert('Error');
+            swal("Atención", "Error");
         }
     }).fail(function (data_error) {
     });
@@ -88,22 +88,22 @@ function editarUsuario() {
                     cargarTablaUsuariosE();
                 }
                 //
-                alert('Editado!');
+                swal("Atención", "Editado");
                 //
             } else if (data === 4) {
                 //
-                alert('El correo ya se encuentra registrado!');
+                swal("Atención", "El correo ya se encuentra registrado!");
             } else {
                 //
-                alert('Error al editar el usuario!');
+                swal("Atención", "Error al editar el usuario!");
             }
         }).fail(function (data_error) {
             console.log(data_error);
-            alert('Error al conectarse!');
+            swal("Atención", "Error al conectarse!");
         });
     } else {
         //
-        alert('Las contraseñas no coinciden!');
+        swal("Atención", "Las contraseñas no coinciden!");
     }
 }
 
@@ -127,16 +127,16 @@ function actualizarEstadoEmpresa(valor, valor2) {
             //
             if (valor2 === 2) {
                 //
-                alert('Empresa desactivada!');
+                swal("Atención", "Empresa desactivada!");
             } else {
                 //
-                alert('Empresa activada!');
+                swal("Atención", "Empresa activada!");
             }
             //
             cargarTablaEmpresas();
         } else {
             //
-            alert('Error');
+            swal("Atención", "Error");
         }
     }).fail(function (data_error) {
     });
@@ -168,15 +168,15 @@ function editarEmpresa() {
             //
             cargarTablaEmpresas();
             //
-            alert('Editada!');
+            swal("Atención", "Editada!");
             //
         } else if (data === 2) {
             //
-            alert('Error al edita la empresa!');
+            swal("Atención", "Error al edita la empresa!");
         }
     }).fail(function (data_error) {
         console.log(data_error);
-        alert('Error al conectarse!');
+        swal("Atención", "Error al conectarse!");
     });
 }
 
@@ -200,10 +200,10 @@ function actualizarEstadoSede(valor, valor2) {
             //
             if (valor2 === 2) {
                 //
-                alert('Sede desactivada!');
+                swal("Atención", "Sede desactivada!");
             } else {
                 //
-                alert('Sede activada!');
+                swal("Atención", "Sede activada!");
             }
             //
             if (sessionStorage.idUsu == 1) {
@@ -215,7 +215,7 @@ function actualizarEstadoSede(valor, valor2) {
             }
         } else {
             //
-            alert('Error');
+            swal("Atención", "Error");
         }
     }).fail(function (data_error) {
     });
@@ -255,14 +255,14 @@ function editarSede() {
                 cargarTablaSedes();
             }
             //
-            alert('Editada!');
+            swal("Atención", "Editada!");
             //
         } else if (data === 2) {
             //
-            alert('Error al edita la sede!');
+            swal("Atención", "Error al edita la sede!");
         }
     }).fail(function (data_error) {
         console.log(data_error);
-        alert('Error al conectarse!');
+        swal("Atención", "Error al conectarse!");
     });
 }

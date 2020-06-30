@@ -589,7 +589,7 @@ function cargarUsuarioaEditar(valor) {
             //
         } else {
             //
-            alert('Error al cargar la empresa!');
+            swal("Atención", "Error al cargar la empresa!");
         }
     }).fail(function (data_error) {
     });
@@ -703,7 +703,7 @@ function cargarEmpresaaEditar(valor) {
             //
         } else {
             //
-            alert('Error al cargar la empresa!');
+            swal("Atención", "Error al cargar la empresa!");
         }
     }).fail(function (data_error) {
     });
@@ -881,7 +881,7 @@ function cargarSedeaEditar(valor) {
             //
         } else {
             //
-            alert('Error al cargar la empresa!');
+            swal("Atención", "Error al cargar la empresa!");
         }
     }).fail(function (data_error) {
     });
