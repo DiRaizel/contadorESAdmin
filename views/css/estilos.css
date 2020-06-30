@@ -1,0 +1,21 @@
+.bodyTabla td{
+    text-align: center;
+}
+
+.table th{
+    text-align: center;
+}
+
+.main-sidebar{
+    background-color: #2B4460;
+}
+
+.main-header{
+    background-color: #2B4460;
+}
+
+.nav-item>.nav-link.active{
+    color: white !important;
+    background-color: rgba(43,123,160,1) !important;
+}
+/*background: rgba(43,123,160,1);*/
