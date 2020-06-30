@@ -162,7 +162,6 @@ function cargarConfiguraciones() {
         //
         $('#btnUsuariosEMenu').addClass('active');
         //
-        
     } else if (sessionStorage.location === 'sedesE') {
         //
         cargarTablaSedesE();
@@ -176,8 +175,6 @@ function cargarConfiguraciones() {
         $('#btnConfiguracionEMenu').addClass('active');
         //
     } else if (sessionStorage.location === 'reportesE') {
-        //
-        
         //
         $('#btnReportesEMenu').addClass('active');
         //$('#btnReporteSubMenu1').addClass('active');

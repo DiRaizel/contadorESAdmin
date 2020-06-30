@@ -194,26 +194,6 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="documento">Documento</label>
-                                    <input type="text" class="form-control" name="documento" id="documento" placeholder="Documento" required>
-                                </div>
-                                <div class="col-6">
-                                    <label for="exampleInputFile">Foto</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="file">
-                                            <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Selecciona imagen</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Subir</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-6">
                                     <label for="nombres">Nombres</label>
                                     <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres" value="" required>
                                 </div>
@@ -226,48 +206,30 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
+                                    <label for="telefono">Documento</label>
+                                    <input type="text" class="form-control" name="documento" id="documento" placeholder="Documento" value="" required>
+                                </div>
+                                <div class="col-6">
                                     <label for="correo">Correo</label>
                                     <input type="text" class="form-control" name="correo" id="correo" placeholder="Correo" value="" required>
                                 </div>
-                                <div class="col-6">
-                                    <label for="telefono">Telefono</label>
-                                    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" value="" required>
-                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label>Departamento</label>
-                                    <select onchange="cargarSelectCiudades(1)" class="form-control" id="departamentose" name="departamento" required>
+                                    <label>Rol</label>
+                                    <select class="form-control" name="rol" id="rol" required>
                                         <option selected disabled>Selecciona</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Funcionario">Funcionario</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <label>Ciudad</label>
-                                    <select class="form-control" id="ciudadese" name="ciudad" required>
-                                        <option selected disabled>Selecciona un departamento</option>
+                                    <label>Sede</label>
+                                    <select class="form-control" id="sedee" name="sede" required>
+                                        <option value="0" selected>Selecciona empresa</option>
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="direccion">Direccion</label>
-                                    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Direccion" value="" required>
-                                </div>
-                                <div class="col-6">
-                                    <label for="exampleInputFile">Soportes</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="soporte">
-                                            <label class="custom-file-label" for="exampleInputFile" id="soporteLabel">Selecciona archivo</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Subir</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +240,7 @@
                                     <input type="password" class="form-control" name="password" id="passworde" placeholder="Contraseña" value="" required>
                                 </div>
                                 <div class="col-6">
-                                    <label for="passwordCe">Confirmar contraseña</label>
+                                    <label for="passwordC">Confirmar contraseña</label>
                                     <input type="password" class="form-control" id="passwordCe" placeholder="Confirmar contraseña" value="">
                                 </div>
                             </div>

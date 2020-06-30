@@ -33,7 +33,7 @@ function guardarUsuario() {
                 $("#formNuevoUsuario")[0].reset();
                 $('#modalNuevoUsuario').modal('hide');
                 //
-                if (sessionStorage.idUsu != 1) {
+                if (sessionStorage.idUsu == 1) {
                     //
                     cargarTablaUsuarios();
                 } else {
@@ -52,7 +52,6 @@ function guardarUsuario() {
             }
         }).fail(function (data_error) {
             console.log(data_error);
-            s
             swal("Atención", "Error al conectarse!");
         });
     }
