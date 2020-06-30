@@ -86,8 +86,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview" id="reportesMenu">
-                    <a href="#" class="nav-link" id="btnReportesMenu">
+                <li class="nav-item has-treeview" id="graficasEMenu">
+                    <a href="#" class="nav-link" id="btngraficasEMenu">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>
                             Graficas
@@ -96,7 +96,7 @@
                     </a>
                     <ul class="nav nav-treeview" id="graficaChartE">
                         <li class="nav-item">
-                            <a href="#" onclick="ruta('graficaChartE')" class="nav-link">
+                            <a href="#" onclick="ruta('graficaChartE')" class="nav-link" id="btngraficaChartEMenu">
                                 <i class="far fas fa-chart-bar nav-icon"></i>
                                 <p>Grafica Barras</p>
                             </a>
@@ -104,9 +104,9 @@
                     </ul>
                     <ul class="nav nav-treeview" id="graficaPieMenu">
                         <li class="nav-item">
-                            <a href="#" onclick="ruta('graficaPieE')" class="nav-link">
+                            <a href="#" onclick="ruta('graficaPieE')" class="nav-link" id="btngraficaPieEMenu">
                                 <i class="far fas fa-chart-pie nav-icon"></i>
-                                <p>Grafica Pie</p>
+                                <p>Grafica Torta</p>
                             </a>
                         </li>
                     </ul>

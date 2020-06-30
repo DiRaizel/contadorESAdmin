@@ -182,7 +182,16 @@ function cargarConfiguraciones() {
     } else if (sessionStorage.location === 'reportesE') {
         //
         $('#btnReportesEMenu').addClass('active');
-        //$('#btnReporteSubMenu1').addClass('active');
+        //
+    } else if (sessionStorage.location === 'graficaChartE') {
+        //
+        $('#btngraficasEMenu').addClass('active');
+        $('#btngraficaChartEMenu').addClass('active');
+        //
+    } else if (sessionStorage.location === 'graficaPieE') {
+        //
+        $('#btngraficasEMenu').addClass('active');
+        $('#btngraficaPieEMenu').addClass('active');
     }
 }
 
@@ -794,6 +803,12 @@ function cargarTablaSedesE() {
             },
             {
                 "data": "ciudad"
+            },
+            {
+                "render": function (data, type, JsonResultRow, meta) {
+                    return '<button  type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-configuracion-modal-xl"><i class="fas fa fa-cogs"></i></button>';
+//                    onclick="configurarSede(' + JsonResultRow.idSed + ')"
+                }
             },
             {
                 "render": function (data, type, JsonResultRow, meta) {
