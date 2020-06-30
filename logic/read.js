@@ -2,7 +2,7 @@
 function show5() {
     if (!document.layers && !document.all && !document.getElementById)
         return;
-
+//sdasdsad
     var Digital = new Date();
     var hours = Digital.getHours();
     var minutes = Digital.getMinutes();
