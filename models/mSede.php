@@ -19,12 +19,12 @@ class sede {
                     . "e.emp_nombre from sede s join ciudad c on s.ciu_id = "
                     . "c.ciu_id join empresa e on s.emp_id = e.emp_id "
                     . "order by s.sed_id asc";
-        }else{
+        } else {
             //
-             $sql = "select s.sed_id, s.sed_nombre, s.sed_estado, c.ciu_nombre, "
+            $sql = "select s.sed_id, s.sed_nombre, s.sed_estado, c.ciu_nombre, "
                     . "e.emp_nombre from sede s join ciudad c on s.ciu_id = "
                     . "c.ciu_id join empresa e on s.emp_id = e.emp_id where "
-                     . "e.emp_id = $idEmp order by s.sed_id asc";
+                    . "e.emp_id = $idEmp order by s.sed_id asc";
         }
         //
         $rsp = mysqli_query($con, $sql);
@@ -163,7 +163,7 @@ class sede {
             return 2;
         }
     }
-    
+
     //
     function cargarSelectSedes($idEmp) {
         //
@@ -185,6 +185,57 @@ class sede {
                     'nombre' => $row['sed_nombre']
                 ));
             }
+            //
+            return $datos;
+        } else {
+            //
+            return $datos;
+        }
+    }
+
+    //
+    function cargarTablasHome($idEmp) {
+        //
+        require '../models/config.php';
+        mysqli_set_charset($con, 'utf8');
+        //
+        $fecha = date("Y-m-d");
+        //
+        $rsp = mysqli_query($con, "SELECT s.sed_nombre, c.ciu_nombre, e.ensa_"
+                . "poblacion, count(r.reg_id) as c from registro_entrada_salida"
+                . " r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu"
+                . "_id = c.ciu_id join entrada_salida e on r.sed_id = e.sed_id "
+                . "where s.emp_id = $idEmp and r.reg_fecha = '$fecha' order by "
+                . "s.sed_nombre asc");
+        //
+        $datos = array();
+        //
+        if (mysqli_num_rows($rsp) > 0) {
+            //
+            $datosTemp = array();
+            $datosG = array();
+            $fila = 0;
+            //
+            while ($row = mysqli_fetch_assoc($rsp)) {
+                //
+                array_push($datosTemp, array(
+                    'sql' => 1,
+                    'count' => $row['c'],
+                    'nombreSede' => $row['sed_nombre'],
+                    'poblacion' => $row['ensa_poblacion'],
+                    'nombreCiu' => $row['ciu_nombre']
+                ));
+                //
+                $datosG['nombres'][$fila] = $fecha;
+                $datosG['series'][$fila]['name'] = $row['sed_nombre'];
+                $datosG['series'][$fila]['data'][0] = (int) $row['ensa_poblacion'];
+                //
+                $fila++;
+            }
+            //
+            //
+            $datos[0] = $datosTemp;
+            $datos[1] = $datosG;
             //
             return $datos;
         } else {

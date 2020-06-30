@@ -290,6 +290,67 @@ function recuperarPass() {
     });
 }
 
+//------------------------------------Home--------------------------------------
+
+//
+function cargarTablasHome() {
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            accion: "cargarTablasHome",
+            idUsu: sessionStorage.idUsu,
+            idEmp: sessionStorage.idEmp
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.length > 0) {
+            //
+            var campos = '';
+            //
+            for (var i = 0; i < data[0].length; i++) {
+                //
+                campos += '<tr><td>' + data[0][i]['nombreSede'] + '</td>';
+                campos += '<td>' + data[0][i]['nombreCiu'] + '</td>';
+                campos += '<td>' + data[0][i]['poblacion'] + '</td>';
+                campos += '<td>' + data[0][i]['count'] + '</td></tr>';
+            }
+            //
+            $('#bodyTablaSedesHome').html(campos);
+            //
+            cargarGrafico(data[1]);
+        } else {
+            //
+            $('#bodyTablaSedesHome').html('<tr style="text-align: center;">No hay Registros el dia de hoy...</tr>');
+        }
+    }).fail(function (data_error) {
+    });
+}
+
+//
+function cargarGrafico(valor) {
+    //
+    var myChartB = Highcharts.chart('graBarras', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Grafico de sedes'
+        },
+        xAxis: {
+            categories: valor.nombres
+        },
+        yAxis: {
+            title: {
+                text: 'Sedes'
+            }
+        },
+        series: valor.series
+    });
+}
+
 //-----------------------------------Inicio-------------------------------------
 
 //

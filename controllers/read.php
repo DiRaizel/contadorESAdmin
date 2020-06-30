@@ -97,4 +97,13 @@ if ($_POST['accion'] === 'login') {
     //
     echo json_encode($rsp);
     //
+}else if ($_POST['accion'] === 'cargarTablasHome') {
+    //
+    $idUsu = (int) $_POST['idUsu'];
+    $idEmp = (int) $_POST['idEmp'];
+    //
+    $rsp = $mSede->cargarTablasHome($idEmp);
+    //
+    echo json_encode($rsp);
+    //
 }

@@ -45,7 +45,7 @@ if (isset($_GET['view'])) {
         //
         $view->reportesE();
         //
-    }   else if ($_GET['view'] === 'graficaChartE') {
+    } else if ($_GET['view'] === 'graficaChartE') {
         //
         $view->graficaChartE();
         //
