@@ -108,6 +108,7 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.idUsu === '1') {
         //
+        $('#homeMenu').css('display', 'none');
         $('#usuariosEMenu').css('display', 'none');
         $('#sedesEMenu').css('display', 'none');
         $('#configuracionEMenu').css('display', 'none');
@@ -132,6 +133,10 @@ function cargarConfiguraciones() {
     }
     //
     if (sessionStorage.location === 'home') {
+        //
+        cargarTablasHome();
+        //
+        $('#btnHomeMenu').addClass('active');
         //
     } else if (sessionStorage.location === 'usuarios') {
         //
@@ -170,7 +175,7 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'configuracionE') {
         //
-        
+
         //
         $('#btnConfiguracionEMenu').addClass('active');
         //
@@ -178,7 +183,7 @@ function cargarConfiguraciones() {
         //
         $('#btnReportesEMenu').addClass('active');
         //$('#btnReporteSubMenu1').addClass('active');
-    } 
+    }
 }
 
 /*-----------------------------------login------------------------------------*/
@@ -215,8 +220,15 @@ function login() {
             sessionStorage.idEmp = data.idEmp;
             sessionStorage.nombreEmp = data.nombreEmp;
             //
-            window.location.href = "index.php?view=home";
-            sessionStorage.location = 'home';
+            if (sessionStorage.idUsu == 1) {
+                //
+                window.location.href = "index.php?view=usuarios";
+                sessionStorage.location = 'usuarios';
+            } else {
+                //
+                window.location.href = "index.php?view=home";
+                sessionStorage.location = 'home';
+            }
         } else {
             //
             swal("Atención", "Credenciales incorretas!");
@@ -377,7 +389,7 @@ function cargarTablaUsuariosE() {
             },
             {
                 "data": "rol"
-            },           
+            },
             {
                 "data": "nombreSed"
             },
@@ -451,7 +463,7 @@ function cargarSelectSedes(valor) {
         if (valor === 1) {
             //
             idEmp = $('#empresa').val();
-        }else{
+        } else {
             //
             idEmp = $('#empresae').val();
         }

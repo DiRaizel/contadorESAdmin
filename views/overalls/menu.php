@@ -22,6 +22,14 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                <li class="nav-item" id="homeMenu">
+                    <a href="#" onclick="ruta('home')" class="nav-link" id="btnHomeMenu">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            home
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item" id="usuariosMenu">
                     <a href="#" onclick="ruta('usuarios')" class="nav-link" id="btnUsuariosMenu">
                         <i class="nav-icon fas fa-users"></i>
@@ -62,17 +70,17 @@
                         </p>
                     </a>
                 </li>
-                 <li class="nav-item" id="configuracionEMenu">
+<!--                <li class="nav-item" id="configuracionEMenu">
                     <a href="#" onclick="ruta('configuracionE')" class="nav-link" id="btnConfiguracionEMenu">
                         <i class="nav-icon fa fa-cogs"></i>
                         <p>
                             Configuración
                         </p>
                     </a>
-                </li>
+                </li>-->
                 <li class="nav-item" id="reportesEMenu">
                     <a href="#" onclick="ruta('reportesE')" class="nav-link" id="btnReportesEMenu">
-                         <i class="nav-icon fa fa-file-excel"></i>
+                        <i class="nav-icon fa fa-file-excel"></i>
                         <p>
                             Reportes
                         </p>
