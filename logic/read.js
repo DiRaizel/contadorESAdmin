@@ -112,8 +112,7 @@ function cargarConfiguraciones() {
         $('#sedesEMenu').css('display', 'none');
         $('#configuracionEMenu').css('display', 'none');
         $('#reportesEMenu').css('display', 'none');
-        $('#graficaChartEMenu').css('display', 'none');
-        $('#graficaPieEMenu').css('display', 'none');
+        $('#reportesMenu').css('display', 'none');
     } else {
         //
         $('#usuariosMenu').css('display', 'none');
@@ -128,8 +127,7 @@ function cargarConfiguraciones() {
             $('#sedesEMenu').css('display', 'none');
             $('#configuracionEMenu').css('display', 'none');
             $('#reportesEMenu').css('display', 'none');
-            $('#graficaChartEMenu').css('display', 'none');
-            $('#graficaPieEMenu').css('display', 'none');
+            $('#reportesMenu').css('display', 'none');
         }
     }
     //
