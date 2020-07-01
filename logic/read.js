@@ -920,7 +920,7 @@ var idConfigSedeEmp = 0;
 function cargarCofigSede(valor, valor2) {
     //
     idConfigSede = valor;
-    idConfigSedeEmp = valor;
+    idConfigSedeEmp = valor2;
     //
     $.ajax({
         url: 'controllers/read.php',
