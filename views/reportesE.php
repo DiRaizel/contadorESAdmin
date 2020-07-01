@@ -47,6 +47,8 @@
                                             </div>
                                             <div class="col-4">
                                                 <button type="submit" class="btn btn-primary" style="margin-top: 4.5vh;">Consultar</button>
+                                                <a id="btnExcel" onclick="" class="btn btn-success" style="margin-top: 4.5vh; color: white;"><i class="fas fa-cloud-download-alt"></i> Excel</a>
+                                                <a id="btnPdf" onclick="" class="btn btn-danger" style="margin-top: 4.5vh; color: white;"><i class="fas fa-cloud-download-alt"></i> Pdf</a>
                                             </div>
                                         </div>
                                         <div class="row">

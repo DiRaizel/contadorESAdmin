@@ -191,6 +191,8 @@ function cargarConfiguraciones() {
     } else if (sessionStorage.location === 'reportesE') {
         //
         $('#btnReportesEMenu').addClass('active');
+        $('#btnExcel').addClass('disabled');
+        $('#btnPdf').addClass('disabled');
         //
     } else if (sessionStorage.location === 'graficaChartE') {
         //
