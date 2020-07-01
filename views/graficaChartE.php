@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <div class="row">    
                                             <div class="col-4">
-                                                <label>Fecha Inicial2</label>
+                                                <label>Fecha Inicial3</label>
                                                 <input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required>
                                             </div>
                                             <div class="col-4">
