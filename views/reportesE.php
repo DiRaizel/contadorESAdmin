@@ -53,9 +53,27 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
-                                                <div class="card col-12" style="height: 55vh">
+                                                <table id="tablaReporte" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Ciudad</th>
+                                                            <th>Poblacion</th>
+                                                            <th># Entradas</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="bodyTablaReporte" class="bodyTabla">
 
-                                                </div>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Ciudad</th>
+                                                            <th>Poblacion</th>
+                                                            <th># Entradas</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
