@@ -98,7 +98,7 @@
                         <li class="nav-item">
                             <a href="#" onclick="ruta('graficaChartE')" class="nav-link" id="btngraficaChartEMenu">
                                 <i class="far fas fa-chart-bar nav-icon"></i>
-                                <p>Grafica Barras</p>
+                                <p>Grafica barras</p>
                             </a>
                         </li>
                     </ul>
@@ -106,7 +106,7 @@
                         <li class="nav-item">
                             <a href="#" onclick="ruta('graficaPieE')" class="nav-link" id="btngraficaPieEMenu">
                                 <i class="far fas fa-chart-pie nav-icon"></i>
-                                <p>Grafica Torta</p>
+                                <p>Grafica torta</p>
                             </a>
                         </li>
                     </ul>

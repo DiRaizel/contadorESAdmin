@@ -40,14 +40,10 @@
                                         <div class="col-4">
                                             <label>Fecha Inicial</label>
                                             <input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required>
-                                            <!--</input>-->
                                         </div>
                                         <div class="col-4">
                                             <label>Fecha Final</label>
                                             <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" required>
-<!--                                            <select class="form-control" name="ciudad" id="ciudad" required>
-                                                <option selected disabled>Selecciona un departamento</option>
-                                            </select>-->
                                         </div>
                                     </div>
                                     <div class="row">
