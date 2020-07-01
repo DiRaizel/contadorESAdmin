@@ -208,7 +208,6 @@
 </div>
 
 <!--MODAL CONFIGURACION PARA LA SEDE-->
-
 <div id="modalConfigSede" class="modal fade bd-configuracion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
         <div class="modal-content">

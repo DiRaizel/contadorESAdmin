@@ -41,6 +41,7 @@
                                             <th>Nombre</th>
                                             <th>Empresa</th>
                                             <th>Ciudad</th>
+                                            <th>Configuración</th>
                                             <th>Estado</th>
                                             <th>Editar</th>
                                         </tr>
@@ -54,6 +55,7 @@
                                             <th>Nombre</th>
                                             <th>Empresa</th>
                                             <th>Ciudad</th>
+                                            <th>Configuración</th>
                                             <th>Estado</th>
                                             <th>Editar</th
                                         </tr>
@@ -215,6 +217,47 @@
             <!--            <div class="modal-footer">
             
                         </div>-->
+        </div>
+    </div>
+</div>
+
+<!--MODAL CONFIGURACION PARA LA SEDE-->
+<div id="modalConfigSede" class="modal fade bd-configuracion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Configuracion sede</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" action="javascript:guardarConfigSede()" id="formConfigSede">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="nombre">Maximo de visitantes</label>
+                                    <input type="text" class="form-control" name="max" id="max" placeholder="Maximo de visitantes" value="" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-8"></div>
+                            <div class="col-2" style="text-align: right">
+                                <a style="color: white;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                            </div>
+                            <div class="col-2">
+                                <!--<button  type="submit" class="btn btn-primary">Submit</button>-->
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

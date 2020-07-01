@@ -829,6 +829,11 @@ function cargarTablaSedesS() {
             },
             {
                 "render": function (data, type, JsonResultRow, meta) {
+                    return '<button onclick="cargarCofigSede(' + JsonResultRow.idSed + ',' + JsonResultRow.idEmp + ')" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-configuracion-modal-xl"><i class="fas fa fa-cogs"></i></button>';
+                }
+            },
+            {
+                "render": function (data, type, JsonResultRow, meta) {
                     //
                     if (JsonResultRow.estado === 'Activa') {
                         //
