@@ -2,7 +2,7 @@
 function show5() {
     if (!document.layers && !document.all && !document.getElementById)
         return;
-//sdasdsad
+//
     var Digital = new Date();
     var hours = Digital.getHours();
     var minutes = Digital.getMinutes();
@@ -32,6 +32,8 @@ function show5() {
         document.getElementById("liveclock").innerHTML = myclock;
     setTimeout("show5()", 1000);
 }
+
+//------------------------------------------------------------------------------
 
 //
 var intervaloHome;
@@ -196,7 +198,7 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'graficaChartE') {
         //
-        graficaBarras(datos2,categorias,'titulo');    
+        graficaBarras(datos2, categorias, 'titulo');
         //
         $('#btngraficasEMenu').addClass('active');
         $('#graficasEMenu').addClass('menu-open');
@@ -447,6 +449,7 @@ function cargarTablaUsuariosS() {
         }
     });
 }
+
 //
 function cargarTablaUsuariosE() {
     //
@@ -505,6 +508,7 @@ function cargarTablaUsuariosE() {
         }
     });
 }
+
 //
 var arrayEmpresas = [];
 
@@ -598,7 +602,6 @@ function cargarSelectSedes(valor) {
     }).fail(function (data_error) {
     });
 }
-
 
 //
 var idUsuarioaEditar = 0;
@@ -863,6 +866,7 @@ function cargarTablaSedesS() {
         }
     });
 }
+
 //
 function cargarTablaSedesE() {
     //
@@ -1095,112 +1099,111 @@ function cargarSelectCiudad() {
 
 ////----------------------------------------- Graficas -------------------------------------------------////
 
-
 var datos1 = [{
-    name: 'Share',
-    data: [
-      { name: 'Chrome', y: 61.41 },
-      { name: 'Internet Explorer', y: 11.84 }
-    ]
-}];
-  
-function cargarDatosGraficaTorta(){
+        name: 'Share',
+        data: [
+            {name: 'Chrome', y: 61.41},
+            {name: 'Internet Explorer', y: 11.84}
+        ]
+    }];
+
+function cargarDatosGraficaTorta() {
     //
-    if($('#fechaInicialGrafica').val() == "" || $('#fechaFinalGrafica').val() == ""){
+    if ($('#fechaInicialGrafica').val() == "" || $('#fechaFinalGrafica').val() == "") {
         alert("fechas vacias");
-    }else{
+    } else {
         $.ajax({
-        url: 'controllers/read.php',
-        type: 'post',
-        data: {
-            "accion": "cargarDatosGraficaTorta",
-            "fechaInicial": $('#fechaInicialGrafica').val(),
-            "fechaFinal": $('#fechaFinalGrafica').val(),          
-            "idEmp": sessionStorage.idEmp
-        },
+            url: 'controllers/read.php',
+            type: 'post',
+            data: {
+                "accion": "cargarDatosGraficaTorta",
+                "fechaInicial": $('#fechaInicialGrafica').val(),
+                "fechaFinal": $('#fechaFinalGrafica').val(),
+                "idEmp": sessionStorage.idEmp
+            },
             dataType: 'json'
         }).done(function (data) {
-        //
+            //
 
-        //
+            //
         }).fail(function (data_error) {
 
         });
     }
-};
+}
+;
 
 //
-    function graficaPie(datos, titulo, subTitulo) {
-        //
+function graficaPie(datos, titulo, subTitulo) {
+    //
 //          console.log(datos1);
 //
-        var myChartP = Highcharts.chart('containerGraficaTorta', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: titulo
-            },
-            subtitle: {
-                text: subTitulo
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
+    var myChartP = Highcharts.chart('containerGraficaTorta', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: titulo
+        },
+        subtitle: {
+            text: subTitulo
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                 }
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    }
-                }
-            },
-            series: datos
-        });
-    }
+            }
+        },
+        series: datos
+    });
+}
 //    
 //console.log("error");
 //
 ////    *************************************************************************
-    var datos2 = [{
-    name: 'Tokyo',
-    data: [49.9]
+var datos2 = [{
+        name: 'Tokyo',
+        data: [49.9]
     }];
 
-    var categorias = [
-      'Jan'
-    ];
-    
-   
-    
-    function graficaBarras(datos2,categorias, titulo) {
-        //
-        console.log(datos2);
-        var myChartB = Highcharts.chart('containerGraficaColumna', {
-            chart: {
-                type: 'column'
-            },
+var categorias = [
+    'Jan'
+];
+
+
+function graficaBarras(datos2, categorias, titulo) {
+    //
+    console.log(datos2);
+    var myChartB = Highcharts.chart('containerGraficaColumna', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: titulo
+        },
+        xAxis: {
+            categories: categorias
+        },
+        yAxis: {
             title: {
-                text: titulo
-            },
-            xAxis: {
-                categories: categorias
-            },
-            yAxis: {
-                title: {
-                    text: 'Servicios'
-                }
-            },
-            series: datos2
-        });
-    }
+                text: 'Servicios'
+            }
+        },
+        series: datos2
+    });
+}

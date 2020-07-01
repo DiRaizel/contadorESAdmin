@@ -258,7 +258,7 @@ class sede {
                 . "poblacion, count(r.reg_id) as c from registro_entrada_salida"
                 . " r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu"
                 . "_id = c.ciu_id join entrada_salida e on r.sed_id = e.sed_id "
-                . "where s.emp_id = $idEmp and r.reg_fecha = '$fecha' order by "
+                . "where s.emp_id = $idEmp and r.reg_fecha = '$fecha' group by "
                 . "s.sed_nombre asc");
         //
         $datos = array();
