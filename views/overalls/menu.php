@@ -26,7 +26,7 @@
                     <a href="#" onclick="ruta('home')" class="nav-link" id="btnHomeMenu">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
-                            home
+                            Home
                         </p>
                     </a>
                 </li>
