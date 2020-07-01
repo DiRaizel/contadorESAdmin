@@ -196,11 +196,15 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'graficaChartE') {
         //
+        graficaBarras(datos2,categorias,'titulo');    
+        //
         $('#btngraficasEMenu').addClass('active');
         $('#graficasEMenu').addClass('menu-open');
         $('#btngraficaChartEMenu').addClass('active');
         //
     } else if (sessionStorage.location === 'graficaPieE') {
+        //
+        graficaPie(datos1, 'titulo', 'subTitulo');
         //
         $('#btngraficasEMenu').addClass('active');
         $('#graficasEMenu').addClass('menu-open');
@@ -1088,3 +1092,115 @@ function cargarSelectCiudad() {
     }).fail(function (data_error) {
     });
 }
+
+////----------------------------------------- Graficas -------------------------------------------------////
+
+
+var datos1 = [{
+    name: 'Share',
+    data: [
+      { name: 'Chrome', y: 61.41 },
+      { name: 'Internet Explorer', y: 11.84 }
+    ]
+}];
+  
+function cargarDatosGraficaTorta(){
+    //
+    if($('#fechaInicialGrafica').val() == "" || $('#fechaFinalGrafica').val() == ""){
+        alert("fechas vacias");
+    }else{
+        $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            "accion": "cargarDatosGraficaTorta",
+            "fechaInicial": $('#fechaInicialGrafica').val(),
+            "fechaFinal": $('#fechaFinalGrafica').val(),          
+            "idEmp": sessionStorage.idEmp
+        },
+            dataType: 'json'
+        }).done(function (data) {
+        //
+
+        //
+        }).fail(function (data_error) {
+
+        });
+    }
+};
+
+//
+    function graficaPie(datos, titulo, subTitulo) {
+        //
+//          console.log(datos1);
+//
+        var myChartP = Highcharts.chart('containerGraficaTorta', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: titulo
+            },
+            subtitle: {
+                text: subTitulo
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: datos
+        });
+    }
+//    
+//console.log("error");
+//
+////    *************************************************************************
+    var datos2 = [{
+    name: 'Tokyo',
+    data: [49.9]
+    }];
+
+    var categorias = [
+      'Jan'
+    ];
+    
+   
+    
+    function graficaBarras(datos2,categorias, titulo) {
+        //
+        console.log(datos2);
+        var myChartB = Highcharts.chart('containerGraficaColumna', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: titulo
+            },
+            xAxis: {
+                categories: categorias
+            },
+            yAxis: {
+                title: {
+                    text: 'Servicios'
+                }
+            },
+            series: datos2
+        });
+    }

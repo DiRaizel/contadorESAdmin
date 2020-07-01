@@ -50,11 +50,20 @@
                                                 <button type="submit" class="btn btn-primary" style="margin-top: 4.5vh;">Consultar</button>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
-                                                <div class="card col-12" style="height: 55vh">
-
-                                                </div>
+                                        <div class="col-4">
+                                            <label>Fecha Final</label>
+                                            <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" required>
+<!--                                            <select class="form-control" name="ciudad" id="ciudad" required>
+                                                <option selected disabled>Selecciona un departamento</option>
+                                            </select>-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
+                                            <div class="card col-12" style="height: 55vh">
+                                                <figure class="highcharts-figure">
+                                                    <div id="containerGraficaColumna"></div>
+                                                </figure>
                                             </div>
                                         </div>
                                     </div>

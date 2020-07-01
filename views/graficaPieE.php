@@ -50,11 +50,13 @@
                                                 <button type="submit" class="btn btn-primary" style="margin-top: 4.5vh;">Consultar</button>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
-                                                <div class="card col-12" style="height: 55vh">
-
-                                                </div>
+                                   
+                                    <div class="row">
+                                        <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
+                                            <div class="card col-12" style="height: 55vh">
+                                                <figure class="highcharts-figure">
+                                                    <div id="containerGraficaTorta"></div>
+                                                </figure>
                                             </div>
                                         </div>
                                     </div>
