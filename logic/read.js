@@ -1207,3 +1207,52 @@ function graficaBarras(datos2, categorias, titulo) {
         series: datos2
     });
 }
+
+//----------------------------------Reportes------------------------------------
+
+//
+function generarReporte() {
+    //
+    var formElement = document.getElementById("formReporte");
+    formData = new FormData(formElement);
+    //
+    formData.append('accion', 'generarReporte');
+    formData.append('empresa', sessionStorage.idEmp);
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.length > 0) {
+            //
+            var campos = '';
+            //
+            for (var i = 0; i < data.length; i++) {
+                //
+                campos += '<tr><td>' + data[i]['nombreSede'] + '</td>';
+                campos += '<td>' + data[i]['nombreCiu'] + '</td>';
+                campos += '<td>' + data[i]['fecha'] + '</td>';
+                campos += '<td>' + data[i]['count'] + '</td></tr>';
+            }
+            //
+            $('#bodyTablaReporte').html(campos);
+            $("#btnExcel").attr('href', 'reportes/reporte-' + sessionStorage.idEmp + '.xlsx');
+            $('#btnExcel').removeClass('disabled');
+            $("#btnPdf").attr('href', 'reportes/reporte-' + sessionStorage.idEmp + '.pdf');
+            $('#btnPdf').removeClass('disabled');
+            //
+        } else {
+            //
+            swal("Atención", "No hay registros en el rango de fechas seleccionado!");
+        }
+    }).fail(function (data_error) {
+        console.log(data_error);
+        swal("Atención", "Error al conectarse!");
+    });
+}

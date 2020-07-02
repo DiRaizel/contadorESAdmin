@@ -47,18 +47,18 @@
                                             </div>
                                             <div class="col-4">
                                                 <button type="submit" class="btn btn-primary" style="margin-top: 4.5vh;">Consultar</button>
-                                                <a id="btnExcel" onclick="" class="btn btn-success" style="margin-top: 4.5vh; color: white;"><i class="fas fa-cloud-download-alt"></i> Excel</a>
-                                                <a id="btnPdf" onclick="" class="btn btn-danger" style="margin-top: 4.5vh; color: white;"><i class="fas fa-cloud-download-alt"></i> Pdf</a>
+                                                <a id="btnExcel" href="" class="btn btn-success" style="margin-top: 4.5vh; color: white;" download><i class="fas fa-cloud-download-alt"></i> Excel</a>
+                                                <a id="btnPdf" href="" class="btn btn-danger" style="margin-top: 4.5vh; color: white;" download><i class="fas fa-cloud-download-alt"></i> Pdf</a>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12" style="height: 58vh; padding-top: 1.5vh">
+                                            <div class="col-12" style="padding-top: 1.5vh">
                                                 <table id="tablaReporte" class="table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>Nombre</th>
                                                             <th>Ciudad</th>
-                                                            <th>Poblacion</th>
+                                                            <th>Fecha</th>
                                                             <th># Entradas</th>
                                                         </tr>
                                                     </thead>
@@ -69,7 +69,7 @@
                                                         <tr>
                                                             <th>Nombre</th>
                                                             <th>Ciudad</th>
-                                                            <th>Poblacion</th>
+                                                            <th>Fecha</th>
                                                             <th># Entradas</th>
                                                         </tr>
                                                     </tfoot>

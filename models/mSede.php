@@ -304,4 +304,123 @@ class sede {
         }
     }
 
+    //
+    function generarReporte($idEmp, $fechaI, $fechaF) {
+        //
+        require '../models/config.php';
+        mysqli_set_charset($con, 'utf8');
+        //
+        $rsp = mysqli_query($con, "SELECT s.sed_nombre, c.ciu_nombre, r.reg_"
+                . "fecha, count(r.reg_id) as c from registro_entrada_salida"
+                . " r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu"
+                . "_id = c.ciu_id where s.emp_id = $idEmp and r.reg_fecha "
+                . "between '$fechaI' and '$fechaF' group by r.reg_fecha, s.sed_nombre asc");
+        //
+        $datos = array();
+        //
+        if (mysqli_num_rows($rsp) > 0) {
+            /** Include PHPExcel */
+            require_once '../libs/PHPExcel.php';
+            require_once '../libs/PHPExcel/Reader/Excel2007.php';
+            // Create new PHPExcel object
+            $objPHPExcel = new PHPExcel();
+            // Set document properties
+            $objPHPExcel->getProperties()->setCreator("Contador ES")
+                    ->setLastModifiedBy("Contador ES")
+                    ->setTitle("Office 2007 XLSX Test Document")
+                    ->setSubject("Office 2007 XLSX Test Document")
+                    ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+                    ->setKeywords("office 2007 openxml php")
+                    ->setCategory("Reporte");
+            // Add some data
+            //
+            $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('B2', 'Sede')
+                    ->setCellValue('C2', 'Ciudad')
+                    ->setCellValue('D2', 'Fecha')
+                    ->setCellValue('E2', '# Entradas');
+            //
+            $objPHPExcel->getActiveSheet()->getStyle("B2:E2")->getFont()->setBold(true);
+            //
+            $i = 3;
+            //
+            while ($row = mysqli_fetch_assoc($rsp)) {
+                //
+                array_push($datos, array(
+                    'sql' => 1,
+                    'count' => $row['c'],
+                    'nombreSede' => $row['sed_nombre'],
+                    'fecha' => $row['reg_fecha'],
+                    'nombreCiu' => $row['ciu_nombre']
+                ));
+                //
+                $objPHPExcel->setActiveSheetIndex(0)
+                        ->setCellValue('B' . $i, $row['sed_nombre'])
+                        ->setCellValue('C' . $i, $row['ciu_nombre'])
+                        ->setCellValue('D' . $i, $row['reg_fecha'])
+                        ->setCellValue('E' . $i, $row['c']);
+                //
+                $i++;
+            }
+            //
+            for ($i = 'A'; $i != $objPHPExcel->getActiveSheet()->getHighestColumn(); $i++) {
+                //
+                $objPHPExcel->getActiveSheet()->getColumnDimension($i)->setAutoSize(TRUE);
+            }
+            // Rename worksheet
+            $objPHPExcel->getActiveSheet()->setTitle('Reporte');
+            // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+            $objPHPExcel->setActiveSheetIndex(0);
+            // Se modifican los encabezados del HTTP para indicar que se envia un archivo de Excel.
+//            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//            header("Content-Disposition: attachment;filename='reporte-$idEmp.xlsx'");
+//            header('Cache-Control: max-age=0');
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+            $objWriter->save("../reportes/reporte-$idEmp.xlsx");
+            //
+            require('../libs/fpdf/fpdf.php');
+            //
+            $pdf = new FPDF();
+            $pdf->AddPage();
+            $pdf->SetFont('Arial', 'B', 16);
+            //
+            $pdf->Cell(40, 10, 'Empresa', 1, 0, 'C');
+            $pdf->SetX(50);
+            $pdf->Cell(40, 10, 'Ciudad', 1, 0, 'C');
+            $pdf->SetX(90);
+            $pdf->Cell(40, 10, 'Fecha', 1, 0, 'C');
+            $pdf->SetX(130);
+            $pdf->Cell(40, 10, '# Entradas', 1, 0, 'C');
+            //
+            $pdf->SetFont('Arial', '', 16);
+            $x = 10;
+            $y = 20;
+            //
+            for ($k = 0; $k < count($datos); $k++) {
+                //
+                $pdf->SetXY($x, $y);
+                $pdf->Cell(40, 10, utf8_decode($datos[$k]['nombreSede']), 1, 0, 'C');
+                $x += 40;
+                $pdf->SetXY($x, $y);
+                $pdf->Cell(40, 10, utf8_decode($datos[$k]['nombreCiu']), 1, 0, 'C');
+                $x += 40;
+                $pdf->SetXY($x, $y);
+                $pdf->Cell(40, 10, utf8_decode($datos[$k]['fecha']), 1, 0, 'C');
+                $x += 40;
+                $pdf->SetXY($x, $y);
+                $pdf->Cell(40, 10, utf8_decode($datos[$k]['count']), 1, 0, 'C');
+                //
+                $x = 10;
+                $y += 10;
+            }
+            //
+            $pdf->Output('F', "../reportes/reporte-$idEmp.pdf");
+            //
+            return $datos;
+        } else {
+            //
+            return $datos;
+        }
+    }
+
 }

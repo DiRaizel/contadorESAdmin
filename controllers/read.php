@@ -97,7 +97,7 @@ if ($_POST['accion'] === 'login') {
     //
     echo json_encode($rsp);
     //
-}else if ($_POST['accion'] === 'cargarDatosGraficaTorta') {
+} else if ($_POST['accion'] === 'cargarDatosGraficaTorta') {
     //
     print_r($_REQUEST);
     exit();
@@ -105,7 +105,7 @@ if ($_POST['accion'] === 'login') {
     $fechaFinal = $_POST['fechaFinal'];
     $idEmp = (int) $_POST['idEmp'];
     //
-    $rsp = $mGeneral->cargarDatosGraficaTorta($idEmp,$fechaInicial,$fechaFinal);
+    $rsp = $mGeneral->cargarDatosGraficaTorta($idEmp, $fechaInicial, $fechaFinal);
 } else if ($_POST['accion'] === 'cargarTablasHome') {
     //
     $idUsu = (int) $_POST['idUsu'];
@@ -120,6 +120,16 @@ if ($_POST['accion'] === 'login') {
     $idSed = (int) $_POST['idSed'];
     //
     $rsp = $mSede->cargarCofigSede($idSed);
+    //
+    echo json_encode($rsp);
+    //
+} else if ($_POST['accion'] === 'generarReporte') {
+    //
+    $idEmp = (int) $_POST['empresa'];
+    $fechaI = $_POST['fechaInicial'];
+    $fechaF = $_POST['fechaFinal'];
+    //
+    $rsp = $mSede->generarReporte($idEmp, $fechaI, $fechaF);
     //
     echo json_encode($rsp);
     //
