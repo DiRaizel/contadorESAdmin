@@ -128,8 +128,9 @@ if ($_POST['accion'] === 'login') {
     $idEmp = (int) $_POST['empresa'];
     $fechaI = $_POST['fechaInicial'];
     $fechaF = $_POST['fechaFinal'];
+    $sede = $_POST['sede'];
     //
-    $rsp = $mSede->generarReporte($idEmp, $fechaI, $fechaF);
+    $rsp = $mSede->generarReporte($idEmp, $fechaI, $fechaF, $sede);
     //
     echo json_encode($rsp);
     //

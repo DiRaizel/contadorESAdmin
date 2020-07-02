@@ -192,6 +192,8 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'reportesE') {
         //
+        cargarSelectSedesR();
+        //
         $('#btnReportesEMenu').addClass('active');
         $('#btnExcel').addClass('disabled');
         $('#btnPdf').addClass('disabled');
@@ -1254,5 +1256,38 @@ function generarReporte() {
     }).fail(function (data_error) {
         console.log(data_error);
         swal("Atención", "Error al conectarse!");
+    });
+}
+
+
+//
+function cargarSelectSedesR() {
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            "empresa": sessionStorage.idEmp,
+            "accion": "cargarSelectSedes"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.length > 0) {
+            //
+            var campos = '<option value="todo" selected>Todo</option>';
+            //
+            for (var i = 0; i < data.length; i++) {
+                //
+                campos += '<option value="' + data[i]['idSed'] + '">' + data[i]['nombre'] + '</option>';
+            }
+            //
+            $('#sede').html(campos);
+            //
+        } else {
+            //
+            $('#sede').html('<option value="todo" selected>Todo</option>');
+        }
+    }).fail(function (data_error) {
     });
 }

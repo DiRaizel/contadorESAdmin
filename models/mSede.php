@@ -305,16 +305,30 @@ class sede {
     }
 
     //
-    function generarReporte($idEmp, $fechaI, $fechaF) {
+    function generarReporte($idEmp, $fechaI, $fechaF, $sede) {
         //
         require '../models/config.php';
         mysqli_set_charset($con, 'utf8');
         //
-        $rsp = mysqli_query($con, "SELECT s.sed_nombre, c.ciu_nombre, r.reg_"
-                . "fecha, count(r.reg_id) as c from registro_entrada_salida"
-                . " r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu"
-                . "_id = c.ciu_id where s.emp_id = $idEmp and r.reg_fecha "
-                . "between '$fechaI' and '$fechaF' group by r.reg_fecha, s.sed_nombre asc");
+        $sql = '';
+        //
+        if ($sede === 'todo') {
+            //
+            $sql = "SELECT s.sed_nombre, c.ciu_nombre, r.reg_fecha, count(r.reg"
+                    . "_id) as c from registro_entrada_salida r join sede s on "
+                    . "r.sed_id = s.sed_id join ciudad c on s.ciu_id = c.ciu_id"
+                    . " where s.emp_id = $idEmp and r.reg_fecha between "
+                    . "'$fechaI' and '$fechaF' group by r.reg_fecha, s.sed_nombre asc";
+        } else {
+            //
+            $sql = "SELECT s.sed_nombre, c.ciu_nombre, r.reg_fecha, count(r.reg"
+                    . "_id) as c from registro_entrada_salida r join sede s on "
+                    . "r.sed_id = s.sed_id join ciudad c on s.ciu_id = c.ciu_id"
+                    . " where s.emp_id = $idEmp and r.sed_id = $sede and r.reg_"
+                    . "fecha between '$fechaI' and '$fechaF' group by r.reg_fecha asc";
+        }
+        //
+        $rsp = mysqli_query($con, $sql);
         //
         $datos = array();
         //

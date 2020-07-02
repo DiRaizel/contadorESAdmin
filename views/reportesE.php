@@ -37,15 +37,21 @@
                                 <form role="form" action="javascript:generarReporte()" id="formReporte">
                                     <div class="form-group">
                                         <div class="row">    
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <label>Fecha Inicial</label>
                                                 <input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <label>Fecha Final</label>
                                                 <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" required>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-3">
+                                                <label>Sede</label>
+                                                <select class="form-control" id="sede" name="sede" required>
+                                                    <option value="todo" selected>Todo</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3">
                                                 <button type="submit" class="btn btn-primary" style="margin-top: 4.5vh;">Consultar</button>
                                                 <a id="btnExcel" href="" class="btn btn-success" style="margin-top: 4.5vh; color: white;" download><i class="fas fa-cloud-download-alt"></i> Excel</a>
                                                 <a id="btnPdf" href="" class="btn btn-danger" style="margin-top: 4.5vh; color: white;" download><i class="fas fa-cloud-download-alt"></i> Pdf</a>
