@@ -99,8 +99,6 @@ if ($_POST['accion'] === 'login') {
     //
 } else if ($_POST['accion'] === 'cargarDatosGraficaTorta') {
     //
-    print_r($_REQUEST);
-    exit();
     $fechaInicial = $_POST['fechaInicial'];
     $fechaFinal = $_POST['fechaFinal'];
     $idEmp = (int) $_POST['idEmp'];
