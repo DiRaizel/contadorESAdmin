@@ -1275,7 +1275,7 @@ function cargarSelectSedesR() {
         //
         if (data.length > 0) {
             //
-            var campos = '<option value="todo" selected>Todo</option>';
+            var campos = '<option value="todo" selected>Todas</option>';
             //
             for (var i = 0; i < data.length; i++) {
                 //
@@ -1286,7 +1286,7 @@ function cargarSelectSedesR() {
             //
         } else {
             //
-            $('#sede').html('<option value="todo" selected>Todo</option>');
+            $('#sede').html('<option value="todo" selected>Todas</option>');
         }
     }).fail(function (data_error) {
     });

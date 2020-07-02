@@ -48,7 +48,7 @@
                                             <div class="col-3">
                                                 <label>Sede</label>
                                                 <select class="form-control" id="sede" name="sede" required>
-                                                    <option value="todo" selected>Todo</option>
+                                                    <option value="todo" selected>Todas</option>
                                                 </select>
                                             </div>
                                             <div class="col-3">
