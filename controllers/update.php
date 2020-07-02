@@ -14,18 +14,16 @@ $mSede = new sede();
 if ($_POST['accion'] === 'actualizarEstadoUsuario') {
     //
     $idUsu = $_POST['idUsu'];
-    $estado = $_POST['estado'];
     //
-    $rsp = $mUsuario->actualizarEstadoUsuario($idUsu, $estado);
+    $rsp = $mUsuario->actualizarEstadoUsuario($idUsu);
     //
     echo json_encode($rsp);
     //
 } else if ($_POST['accion'] === 'actualizarEstadoEmpresa') {
     //
     $idEmp = $_POST['idEmp'];
-    $estado = $_POST['estado'];
     //
-    $rsp = $mEmpresa->actualizarEstadoEmpresa($idEmp, $estado);
+    $rsp = $mEmpresa->actualizarEstadoEmpresa($idEmp);
     //
     echo json_encode($rsp);
     //
@@ -43,9 +41,8 @@ if ($_POST['accion'] === 'actualizarEstadoUsuario') {
 } else if ($_POST['accion'] === 'actualizarEstadoSede') {
     //
     $idSed = $_POST['idSed'];
-    $estado = $_POST['estado'];
     //
-    $rsp = $mSede->actualizarEstadoSede($idSed, $estado);
+    $rsp = $mSede->actualizarEstadoSede($idSed);
     //
     echo json_encode($rsp);
     //

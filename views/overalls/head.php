@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- SweetAlerts -->
         <link href="libs/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <!-- Toastr -->
+        <link href="libs/toastr/toastr.css" rel="stylesheet" type="text/css"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="views/plugins/fontawesome-free/css/all.min.css">
         <!-- Ionicons -->

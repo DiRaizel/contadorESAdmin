@@ -57,31 +57,39 @@ class sede {
     }
 
     //
-    function actualizarEstadoSede($idSed, $estado) {
+    function actualizarEstadoSede($idSed) {
         //
         require '../models/config.php';
         mysqli_set_charset($con, 'utf8');
         //
-        $sql = '';
+        $rspE = mysqli_query($con, "select sed_estado from sede where sed_id = "
+                . "$idSed");
         //
-        if ($estado === '1') {
+        if (mysqli_num_rows($rspE) > 0) {
             //
-            $sql = "update sede set sed_estado = 'Activa' where sed_id "
-                    . "= $idSed";
-        } else {
+            $row = mysqli_fetch_assoc($rspE);
             //
-            $sql = "update sede set sed_estado = 'Inactiva' where sed_id"
-                    . " = $idSed";
-        }
-        //
-        $rsp = mysqli_query($con, $sql);
-        //
-        if ($rsp) {
+            $sql = '';
             //
-            return $rspA[0] = array('sql' => 1);
-        } else {
+            if ($row['sed_estado'] === 'Inactiva') {
+                //
+                $sql = "update sede set sed_estado = 'Activa' where sed_id "
+                        . "= $idSed";
+            } else {
+                //
+                $sql = "update sede set sed_estado = 'Inactiva' where sed_id"
+                        . " = $idSed";
+            }
             //
-            return $rspA[0] = array('sql' => 0);
+            $rsp = mysqli_query($con, $sql);
+            //
+            if ($rsp) {
+                //
+                return $rspA[0] = array('sql' => 1, 'estado' => $row['sed_estado']);
+            } else {
+                //
+                return $rspA[0] = array('sql' => 0);
+            }
         }
     }
 

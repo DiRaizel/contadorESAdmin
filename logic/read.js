@@ -429,10 +429,10 @@ function cargarTablaUsuariosS() {
                     //
                     if (JsonResultRow.estado === 'Activo') {
                         //
-                        return '<button onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ', 2)" type="button" class="btn btn-success"><i class="fas fa-check-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ')" type="checkbox" checked><span class="slider round"></span></label>';
                     } else {
                         //
-                        return '<button onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ', 1)" type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ')" type="checkbox"><span class="slider round"></span></label>';
                     }
                 }
             },
@@ -488,10 +488,10 @@ function cargarTablaUsuariosE() {
                     //
                     if (JsonResultRow.estado === 'Activo') {
                         //
-                        return '<button onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ', 2)" type="button" class="btn btn-success"><i class="fas fa-check-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ')" type="checkbox" checked><span class="slider round"></span></label>';
                     } else {
                         //
-                        return '<button onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ', 1)" type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoUsuario(' + JsonResultRow.idUsu + ')" type="checkbox"><span class="slider round"></span></label>';
                     }
                 }
             },
@@ -725,10 +725,10 @@ function cargarTablaEmpresas() {
                     //
                     if (JsonResultRow.estado === 'Activa') {
                         //
-                        return '<button onclick="actualizarEstadoEmpresa(' + JsonResultRow.idEmp + ', 2)" type="button" class="btn btn-success"><i class="fas fa-check-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoEmpresa(' + JsonResultRow.idEmp + ')" type="checkbox" checked><span class="slider round"></span></label>';
                     } else {
                         //
-                        return '<button onclick="actualizarEstadoEmpresa(' + JsonResultRow.idEmp + ', 1)" type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoEmpresa(' + JsonResultRow.idEmp + ')" type="checkbox"><span class="slider round"></span></label>';
                     }
                 }
             },
@@ -846,10 +846,10 @@ function cargarTablaSedesS() {
                     //
                     if (JsonResultRow.estado === 'Activa') {
                         //
-                        return '<button onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ', 2)" type="button" class="btn btn-success"><i class="fas fa-check-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ')" type="checkbox" checked><span class="slider round"></span></label>';
                     } else {
                         //
-                        return '<button onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ', 1)" type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ')" type="checkbox"><span class="slider round"></span></label>';
                     }
                 }
             },
@@ -901,10 +901,10 @@ function cargarTablaSedesE() {
                     //
                     if (JsonResultRow.estado === 'Activa') {
                         //
-                        return '<button onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ', 2)" type="button" class="btn btn-success"><i class="fas fa-check-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ')" type="checkbox" checked><span class="slider round"></span></label>';
                     } else {
                         //
-                        return '<button onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ', 1)" type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>';
+                        return '<label class="switch"><input onclick="actualizarEstadoSede(' + JsonResultRow.idSed + ')" type="checkbox"><span class="slider round"></span></label>';
                     }
                 }
             },

@@ -42,31 +42,39 @@ class empresa {
     }
 
     //
-    function actualizarEstadoEmpresa($idEmp, $estado) {
+    function actualizarEstadoEmpresa($idEmp) {
         //
         require '../models/config.php';
         mysqli_set_charset($con, 'utf8');
         //
-        $sql = '';
+        $rspE = mysqli_query($con, "select emp_estado from empresa where emp_id"
+                . " = $idEmp");
         //
-        if ($estado === '1') {
+        if (mysqli_num_rows($rspE) > 0) {
             //
-            $sql = "update empresa set emp_estado = 'Activa' where emp_id "
-                    . "= $idEmp";
-        } else {
+            $row = mysqli_fetch_assoc($rspE);
             //
-            $sql = "update empresa set emp_estado = 'Inactiva' where emp_id"
-                    . " = $idEmp";
-        }
-        //
-        $rsp = mysqli_query($con, $sql);
-        //
-        if ($rsp) {
+            $sql = '';
             //
-            return $rspA[0] = array('sql' => 1);
-        } else {
+            if ($row['emp_estado'] === 'Inactiva') {
+                //
+                $sql = "update empresa set emp_estado = 'Activa' where emp_id "
+                        . "= $idEmp";
+            } else {
+                //
+                $sql = "update empresa set emp_estado = 'Inactiva' where emp_id"
+                        . " = $idEmp";
+            }
             //
-            return $rspA[0] = array('sql' => 0);
+            $rsp = mysqli_query($con, $sql);
+            //
+            if ($rsp) {
+                //
+                return $rspA[0] = array('sql' => 1, 'estado' => $row['emp_estado']);
+            } else {
+                //
+                return $rspA[0] = array('sql' => 0);
+            }
         }
     }
 

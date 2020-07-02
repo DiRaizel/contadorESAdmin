@@ -167,30 +167,38 @@ class usuario {
     }
 
     //
-    function actualizarEstadoUsuario($idUsu, $estado) {
+    function actualizarEstadoUsuario($idUsu) {
         //
         require '../models/config.php';
         mysqli_set_charset($con, 'utf8');
         //
-        $sql = '';
+        $rspE = mysqli_query($con, "select usu_estado from usuario where usu_id"
+                . " = $idUsu");
         //
-        if ($estado === '1') {
+        if (mysqli_num_rows($rspE) > 0) {
             //
-            $sql = "update usuario set usu_estado = 'Activo' where usu_id "
-                    . "= $idUsu";
-        } else {
-            $sql = "update usuario set usu_estado = 'Inactivo' where usu_id"
-                    . " = $idUsu";
-        }
-        //
-        $rsp = mysqli_query($con, $sql);
-        //
-        if ($rsp) {
+            $row = mysqli_fetch_assoc($rspE);
             //
-            return $rspA[0] = array('sql' => 1);
-        } else {
+            $sql = '';
             //
-            return $rspA[0] = array('sql' => 0);
+            if ($row['usu_estado'] === 'Inactivo') {
+                //
+                $sql = "update usuario set usu_estado = 'Activo' where usu_id "
+                        . "= $idUsu";
+            } else {
+                $sql = "update usuario set usu_estado = 'Inactivo' where usu_id"
+                        . " = $idUsu";
+            }
+            //
+            $rsp = mysqli_query($con, $sql);
+            //
+            if ($rsp) {
+                //
+                return $rspA[0] = array('sql' => 1, 'estado' => $row['usu_estado']);
+            } else {
+                //
+                return $rspA[0] = array('sql' => 0);
+            }
         }
     }
 
@@ -305,10 +313,10 @@ class usuario {
         } else {
             //
             $rsp = mysqli_query($con, "update usuario set usu_nombres = '$nombres', "
-                        . "usu_apellidos = '$apellidos', usu_documento = '$documento', "
-                        . "usu_correo = '$correo', usu_rol = '$rol', "
-                        . "usu_password = '$password', emp_id = $empresa, "
-                        . "sed_id = $sede where usu_id = $idUsu");
+                    . "usu_apellidos = '$apellidos', usu_documento = '$documento', "
+                    . "usu_correo = '$correo', usu_rol = '$rol', "
+                    . "usu_password = '$password', emp_id = $empresa, "
+                    . "sed_id = $sede where usu_id = $idUsu");
             //
             if ($rsp) {
                 //

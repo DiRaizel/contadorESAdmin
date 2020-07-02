@@ -1,14 +1,13 @@
 //---------------------------------Usuarios-------------------------------------
 
 //
-function actualizarEstadoUsuario(valor, valor2) {
+function actualizarEstadoUsuario(valor) {
     //
     $.ajax({
         url: 'controllers/update.php',
         type: 'post',
         data: {
             "idUsu": valor,
-            "estado": valor2,
             "accion": "actualizarEstadoUsuario"
         },
         dataType: 'json'
@@ -16,21 +15,14 @@ function actualizarEstadoUsuario(valor, valor2) {
         //
         if (data.sql === 1) {
             //
-            if (valor2 === 2) {
+            if (data.estado === 'Activo') {
                 //
-                swal("Atención", "Usuario desactivado!");
+                toastr.error('Usuario desactivado!');
             } else {
                 //
-                swal("Atención", "Usuario activado!");
+                toastr.success('Usuario activado!');
             }
             //
-            if (sessionStorage.idUsu == 1) {
-                //
-                cargarTablaUsuariosS();
-            } else {
-                //
-                cargarTablaUsuariosE();
-            }
         } else {
             //
             swal("Atención", "Error");
@@ -110,14 +102,13 @@ function editarUsuario() {
 //---------------------------------Empresas-------------------------------------
 
 //
-function actualizarEstadoEmpresa(valor, valor2) {
+function actualizarEstadoEmpresa(valor) {
     //
     $.ajax({
         url: 'controllers/update.php',
         type: 'post',
         data: {
             "idEmp": valor,
-            "estado": valor2,
             "accion": "actualizarEstadoEmpresa"
         },
         dataType: 'json'
@@ -125,15 +116,14 @@ function actualizarEstadoEmpresa(valor, valor2) {
         //
         if (data.sql === 1) {
             //
-            if (valor2 === 2) {
+            if (data.estado === 'Activa') {
                 //
-                swal("Atención", "Empresa desactivada!");
+                toastr.error('Empresa desactivada!');
             } else {
                 //
-                swal("Atención", "Empresa activada!");
+                toastr.success('Empresa activada!');
             }
             //
-            cargarTablaEmpresas();
         } else {
             //
             swal("Atención", "Error");
@@ -183,14 +173,13 @@ function editarEmpresa() {
 //-----------------------------------Sedes--------------------------------------
 
 //
-function actualizarEstadoSede(valor, valor2) {
+function actualizarEstadoSede(valor) {
     //
     $.ajax({
         url: 'controllers/update.php',
         type: 'post',
         data: {
             "idSed": valor,
-            "estado": valor2,
             "accion": "actualizarEstadoSede"
         },
         dataType: 'json'
@@ -198,21 +187,14 @@ function actualizarEstadoSede(valor, valor2) {
         //
         if (data.sql === 1) {
             //
-            if (valor2 === 2) {
+            if (data.estado === 'Activa') {
                 //
-                swal("Atención", "Sede desactivada!");
+                toastr.error('Sede desactivada!');
             } else {
                 //
-                swal("Atención", "Sede activada!");
+                toastr.success('Sede activada!');
             }
             //
-            if (sessionStorage.idUsu == 1) {
-                //
-                cargarTablaSedesS();
-            } else {
-                //
-                cargarTablaSedesE();
-            }
         } else {
             //
             swal("Atención", "Error");
