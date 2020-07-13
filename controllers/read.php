@@ -99,13 +99,27 @@ if ($_POST['accion'] === 'login') {
     //
 } else if ($_POST['accion'] === 'cargarDatosGraficaTorta') {
     //
-    print_r($_REQUEST);
-    exit();
     $fechaInicial = $_POST['fechaInicial'];
     $fechaFinal = $_POST['fechaFinal'];
     $idEmp = (int) $_POST['idEmp'];
     //
     $rsp = $mGeneral->cargarDatosGraficaTorta($idEmp, $fechaInicial, $fechaFinal);
+    //
+    echo json_encode($rsp);
+    //
+} else if ($_POST['accion'] === 'cargarDatosGraficaBarras') {
+    //
+//    print_r($_REQUEST);
+//    exit();
+    //
+    $fechaInicial = $_POST['fechaInicial'];
+    $fechaFinal = $_POST['fechaFinal'];
+    $idEmp = (int) $_POST['idEmp'];
+    //
+    $rsp = $mGeneral->cargarDatosGraficaBarras($idEmp, $fechaInicial, $fechaFinal);
+    //
+    echo json_encode($rsp);
+    //
 } else if ($_POST['accion'] === 'cargarTablasHome') {
     //
     $idUsu = (int) $_POST['idUsu'];

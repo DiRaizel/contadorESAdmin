@@ -35,16 +35,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body" style="padding: 0px;">
-                                <form role="form" action="javascript:graficaBarras()" id="formGraficaBaras">
+                                <form role="form" action="javascript:cargarDatosGraficaBarras()" id="formGraficaBaras">
                                     <div class="form-group">
                                         <div class="row">    
                                             <div class="col-4">
                                                 <label>Fecha Inicial</label>
-                                                <input type="date" class="form-control" name="fechaInicial" id="fechaInicial" required>
+                                                <input type="date" class="form-control" name="fechaInicialGrafica" id="fechaInicialGrafica" required>
                                             </div>
                                             <div class="col-4">
                                                 <label>Fecha Final</label>
-                                                <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" required>
+                                                <input type="date" class="form-control" name="fechaFinalGrafica" id="fechaFinalGrafica" required>
                                             </div>
                                             <div class="col-4">
                                                 <button type="submit" class="btn btn-primary" style="margin-top: 4.5vh;">Consultar</button>
