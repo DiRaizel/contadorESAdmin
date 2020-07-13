@@ -334,20 +334,19 @@ class sede {
         //
         if (mysqli_num_rows($rsp) > 0) {
             /** Include PHPExcel */
-            require_once '../libs/PHPExcel.php';
-            require_once '../libs/PHPExcel/Reader/Excel2007.php';
+            require_once '../libs/PHPExcel/PHPExcel.php';
+//            require_once '../libs/PHPExcel/Reader/Excel2007.php';
             // Create new PHPExcel object
             $objPHPExcel = new PHPExcel();
             // Set document properties
-            $objPHPExcel->getProperties()->setCreator("Contador ES")
-                    ->setLastModifiedBy("Contador ES")
-                    ->setTitle("Office 2007 XLSX Test Document")
-                    ->setSubject("Office 2007 XLSX Test Document")
-                    ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-                    ->setKeywords("office 2007 openxml php")
-                    ->setCategory("Reporte");
+            $objPHPExcel->getProperties()->setCreator("Raizel") // Nombre del autor
+                    ->setLastModifiedBy("Raizel") //Ultimo usuario que lo modificÃ³
+                    ->setTitle("Reporte") // Titulo
+                    ->setSubject("Reporte") //Asunto
+                    ->setDescription("Reporte") //DescripciÃ³n
+                    ->setKeywords("Reporte") //Etiquetas
+                    ->setCategory("Reporte excel"); //Categorias
             // Add some data
-            //
             $objPHPExcel->setActiveSheetIndex(0)
                     ->setCellValue('B2', 'Sede')
                     ->setCellValue('C2', 'Ciudad')
