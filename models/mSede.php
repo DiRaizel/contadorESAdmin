@@ -346,6 +346,142 @@ class sede {
                     ->setDescription("Reporte") //DescripciÃ³n
                     ->setKeywords("Reporte") //Etiquetas
                     ->setCategory("Reporte excel"); //Categorias
+            //estilo excel
+            $estiloTituloReporte = array(
+                'font' => array(
+                    'name' => 'Calibri',
+                    'bold' => true,
+                    'italic' => false,
+                    'strike' => false,
+                    'size' => 20,
+                    'color' => array(
+                        'rgb' => '000000'
+                    )
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'rotation' => 0,
+                    'wrap' => TRUE
+                )
+            );
+            //
+            $estiloTituloReporte2 = array(
+                'font' => array(
+                    'name' => 'Calibri',
+                    'bold' => true,
+                    'italic' => false,
+                    'strike' => false,
+                    'size' => 16,
+                    'color' => array(
+                        'rgb' => '000000'
+                    )
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'rotation' => 0,
+                    'wrap' => TRUE
+                )
+            );
+            //
+            $estiloTituloColumnas = array(
+                'font' => array(
+                    'name' => 'Calibri',
+                    'bold' => false,
+                    'size' => 16,
+                    'color' => array(
+                        'rgb' => '000000'
+                    )
+                ),
+                'fill' => array(
+                    'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+                    'rotation' => 90,
+                    'startcolor' => array(
+                        'rgb' => 'A4A4A4'
+                    ),
+                    'endcolor' => array(
+                        'argb' => 'CCCCCC'
+                    )
+                ),
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_THIN,
+                        'color' => array(
+                            'rgb' => '000000'
+                        )
+                    ),
+                    'bottom' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_THIN,
+                        'color' => array(
+                            'rgb' => '000000'
+                        )
+                    )
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'wrap' => TRUE
+                )
+            );
+            //
+            $estiloInformacion = new PHPExcel_Style();
+            $estiloInformacion->applyFromArray(array(
+                'font' => array(
+                    'name' => 'Calibri',
+                    'size' => 16,
+                    'color' => array(
+                        'rgb' => '000000'
+                    )
+                ),
+                'fill' => array(
+                    'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                    'color' => array(
+                        'argb' => 'ffffff')
+                ),
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_THIN,
+                        'color' => array(
+                            'rgb' => '000000'
+                        )
+                    )
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'wrap' => TRUE
+                )
+            ));
+            //
+            $estiloInformacionN = new PHPExcel_Style();
+            $estiloInformacionN->applyFromArray(array(
+                'font' => array(
+                    'name' => 'Calibri',
+                    'size' => 16,
+                    'color' => array(
+                        'rgb' => '000000'
+                    )
+                ),
+                'fill' => array(
+                    'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                    'color' => array(
+                        'argb' => 'ffffff')
+                ),
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_THIN,
+                        'color' => array(
+                            'rgb' => '000000'
+                        )
+                    )
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'wrap' => TRUE
+                )
+            ));
             // Add some data
             $objPHPExcel->setActiveSheetIndex(0)
                     ->setCellValue('B2', 'Sede')
@@ -375,19 +511,22 @@ class sede {
                 //
                 $i++;
             }
+            //se le dan los estilos al excel
+//            $objPHPExcel->getActiveSheet()->getStyle('B1')->applyFromArray($estiloTituloReporte);
+//            $objPHPExcel->getActiveSheet()->getStyle('D1')->applyFromArray($estiloTituloReporte2);
+            $objPHPExcel->getActiveSheet()->getStyle('B2:E2')->applyFromArray($estiloTituloColumnas);
+//            $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A1:Q1");
+//            $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacionN, "B2:B9");
             //
-            for ($i = 'A'; $i != $objPHPExcel->getActiveSheet()->getHighestColumn(); $i++) {
+            for ($k = 'B'; $k <= 'E'; $k++) {
                 //
-                $objPHPExcel->getActiveSheet()->getColumnDimension($i)->setAutoSize(TRUE);
+                $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension($k)->setAutoSize(TRUE);
             }
             // Rename worksheet
             $objPHPExcel->getActiveSheet()->setTitle('Reporte');
             // Set active sheet index to the first sheet, so Excel opens this as the first sheet
             $objPHPExcel->setActiveSheetIndex(0);
             // Se modifican los encabezados del HTTP para indicar que se envia un archivo de Excel.
-//            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-//            header("Content-Disposition: attachment;filename='reporte-$idEmp.xlsx'");
-//            header('Cache-Control: max-age=0');
             $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
             $objWriter->save("../reportes/reporte-$idEmp.xlsx");
             //
