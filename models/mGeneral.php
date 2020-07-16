@@ -32,7 +32,7 @@ class general {
             return $datos[0] = array('sql' => 0);
         }
     }
-    
+
     //
     function cargarSelectCiudad($idDep) {
         //
@@ -60,8 +60,9 @@ class general {
             return $datos[0] = array('sql' => 0);
         }
     }
+
     //
-    function cargarDatosGraficaTorta($idEmp,$fechaInicial,$fechaFinal){
+    function cargarDatosGraficaTorta($idEmp, $fechaInicial, $fechaFinal) {
         //
         require '../models/config.php';
         mysqli_set_charset($con, 'utf8');
@@ -77,7 +78,7 @@ class general {
             //
             while ($row = mysqli_fetch_assoc($rsp)) {
                 //
-                $totalCantidad += (float) $row["cantidad"];       
+                $totalCantidad += (float) $row["cantidad"];
                 //
                 array_push($arrayTemp, array(
                     'sql' => 1,
@@ -89,7 +90,7 @@ class general {
             //
             $datos[0]['name'] = 'Porcentaje';
             //
-            for($i=0;$i<count($arrayTemp);$i++){
+            for ($i = 0; $i < count($arrayTemp); $i++) {
                 $datos[0]['data'][$i]['name'] = $arrayTemp[$i]['sedes'];
                 $datos[0]['data'][$i]['y'] = (float) $arrayTemp[$i]['cantidad'] * 100 / $totalCantidad;
             }
@@ -99,83 +100,58 @@ class general {
             return $datos[0] = array('sql' => 0);
         }
     }
+
     //
-    function cargarDatosGraficaBarras($idEmp,$fechaInicial,$fechaFinal){
+
+    function cargarDatosGraficaBarras($idEmp, $fechaInicial, $fechaFinal) {
         //
         require '../models/config.php';
         mysqli_set_charset($con, 'utf8');
         //
-        $rsp = mysqli_query($con, "SELECT s.sed_nombre, c.ciu_nombre, r.reg_fecha, count(r.reg_id) as c from registro_entrada_salida r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu_id = c.ciu_id where s.emp_id = '$idEmp' and r.reg_fecha between '$fechaInicial' and '$fechaFinal' group by r.reg_fecha, s.sed_nombre asc");
+        $fecha = date("Y-m-d");
+        //
+
+        $rsp = mysqli_query($con, "SELECT s.sed_nombre, c.ciu_nombre, e.ensa_"
+                . "poblacion, count(r.reg_id) as c from registro_entrada_salida"
+                . " r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu"
+                . "_id = c.ciu_id join entrada_salida e on r.sed_id = e.sed_id "
+                . "where s.emp_id = $idEmp and r.reg_fecha BETWEEN '$fechaInicial' and '$fechaFinal' group by "
+                . "s.sed_nombre asc");
         //
         $datos = array();
         //
         if (mysqli_num_rows($rsp) > 0) {
-            //            
-            $arrayCategorias = array();
-            $arraySedes = array();
-            $ControlCategorias = 0;
-            $ControlSedes = 0;
-            $arrayDatos = array();
+            //
+            $datosTemp = array();
+            $datosG = array();
+            $fila = 0;
             //
             while ($row = mysqli_fetch_assoc($rsp)) {
                 //
-                if ($ControlCategorias === 0) {
+                array_push($datosTemp, array(
+                    'sql' => 1,
+                    'count' => $row['c'],
+                    'nombreSede' => $row['sed_nombre'],
+                    'poblacion' => $row['ensa_poblacion'],
+                    'nombreCiu' => $row['ciu_nombre']
+                ));
                 //
-                $arrayCategorias['fechas'][$ControlCategorias] = $row['reg_fecha'];
+                $datosG['nombres'][$fila] = $fecha;
+                $datosG['series'][$fila]['name'] = $row['sed_nombre'];
+                $datosG['series'][$fila]['data'][0] = (int) $row['ensa_poblacion'];
                 //
-                $ControlCategorias++;
-                //
-                } else if (!in_array($row['reg_fecha'], $arrayCategorias['fechas'])) {
-                    //
-                    $arrayCategorias['fechas'][$ControlCategorias] = $row['reg_fecha'];
-                    //
-                    $ControlCategorias++;
-                    //
-                }
-                
-                //
-                if ($ControlSedes === 0) {
-                //
-                $arraySedes['sedes'][$ControlSedes] = $row['sed_nombre'];
-                //
-                $ControlSedes++;
-                //
-                } else if (!in_array($row['sed_nombre'], $arraySedes['sedes'])) {
-                    //
-                    $arraySedes['sedes'][$ControlSedes] = $row['sed_nombre'];
-                    //
-                    $ControlSedes++;
-                    //
-                }
-                //
-                
-                
-                
-                //
-//                if(!in_array($arrayCategorias, $row['reg_fecha'])){
-//                    array_push($arrayCategorias, $row['reg_fecha']);
-//                }
-                //
-//                array_push($arrayDatos, array(
-//                    'sedes' => $row['sed_nombre'],                 
-//                    'cantidad' => $row['c']                    
-//                ));
-                //                
+                $fila++;
             }
             //
-//            $datos['categories'] = $arrayCategorias;
-//            //
-//            for($i=0;$i<count($arrayDatos);$i++){
-//                $datos['data'][$i]['name'] = $arrayDatos[$i]['sedes'];
-//                $datos['data'][$i]['data'] = (float) $arrayDatos[$i]['cantidad'];
-//            }
+            $datos[0] = $datosTemp;
+            $datos[1] = $datosG;
             //
-            print_r($arraySedes);
-            print_r($arrayCategorias);
             return $datos;
         } else {
-            return $datos[0] = array('sql' => 0);
+            //
+            return $datos;
         }
+        //
     }
 
 }
