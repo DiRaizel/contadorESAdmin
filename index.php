@@ -55,7 +55,7 @@ if (isset($_GET['view'])) {
         //
     }
 } else {
-    //
+    ///
     $view->login();
 }
 
