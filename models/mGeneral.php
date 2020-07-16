@@ -111,41 +111,78 @@ class general {
         $fecha = date("Y-m-d");
         //
 
-        $rsp = mysqli_query($con, "SELECT s.sed_nombre, c.ciu_nombre, e.ensa_"
-                . "poblacion, count(r.reg_id) as c from registro_entrada_salida"
-                . " r join sede s on r.sed_id = s.sed_id join ciudad c on s.ciu"
-                . "_id = c.ciu_id join entrada_salida e on r.sed_id = e.sed_id "
-                . "where s.emp_id = $idEmp and r.reg_fecha BETWEEN '$fechaInicial' and '$fechaFinal' group by "
-                . "s.sed_nombre asc");
-        //
+        $rsp = mysqli_query($con, "SELECT s.sed_nombre, count(r.reg_id) as c,r.reg_fecha,"
+                . "r.sed_id from registro_entrada_salida r join sede s on r.sed_id = s.sed_id "
+                . "where s.emp_id = $idEmp and r.reg_fecha BETWEEN '$fechaInicial' and '$fechaFinal' "
+                . "group by s.sed_nombre,reg_fecha asc");
         $datos = array();
         //
         if (mysqli_num_rows($rsp) > 0) {
             //
             $datosTemp = array();
             $datosG = array();
+            $fechasarray = array();
+            $sedessarray = array();
+            $controlSedes = 0;
+            $controlSedesA = 0;
             $fila = 0;
+            //
+            $controlSA = 0;
+            $controlFSA = 0;
             //
             while ($row = mysqli_fetch_assoc($rsp)) {
                 //
-                array_push($datosTemp, array(
-                    'sql' => 1,
-                    'count' => $row['c'],
-                    'nombreSede' => $row['sed_nombre'],
-                    'poblacion' => $row['ensa_poblacion'],
-                    'nombreCiu' => $row['ciu_nombre']
-                ));
-                //
-                $datosG['nombres'][$fila] = $fecha;
-                $datosG['series'][$fila]['name'] = $row['sed_nombre'];
-                $datosG['series'][$fila]['data'][0] = (int) $row['ensa_poblacion'];
-                //
-                $fila++;
+                if ($controlFSA === 0) {
+                    //
+                    $fechasarray['fechas'][$controlFSA] = $row['reg_fecha'];
+
+                    //
+                    $controlFSA++;
+                    //
+                } else if (!in_array($row['reg_fecha'], $fechasarray['fechas'])) {
+                    //
+                    $fechasarray['fechas'][$controlFSA] = $row['reg_fecha'];
+
+                    //
+                    $controlFSA++;
+                }
+
+                if ($controlSedesA === 0) {
+                    //
+                    $sedessarray['sedes'][$controlSedesA] = $row['sed_nombre'];
+                    $sedessarray['id'][$controlSedesA] = $row['sed_id'];
+                    //
+                    $controlSedesA++;
+                    //
+                } else if (!in_array($row['sed_nombre'], $sedessarray['sedes'])) {
+                    //
+                    $sedessarray['sedes'][$controlSedesA] = $row['sed_nombre'];
+                    $sedessarray['id'][$controlSedesA] = $row['sed_id'];
+
+                    //
+                    $controlSedesA++;
+                }
             }
-            //
-            $datos[0] = $datosTemp;
-            $datos[1] = $datosG;
-            //
+
+            for ($i = 0; $i < count($sedessarray["id"]); $i++) {
+                //
+                for ($j = 0; $j < count($fechasarray["fechas"]); $j++) {
+                    //
+                    $consult = mysqli_query($con, "SELECT count(*) as cantidad FROM registro_entrada_salida where"
+                            . " sed_id = " . $sedessarray["id"][$i] . " and reg_fecha = '" . $fechasarray["fechas"][$j] . "'");
+                    while ($rows = mysqli_fetch_assoc($consult)) {
+                        //
+                        $datosG[$i]['name'] = $sedessarray["sedes"][$i];
+                        $datosG[$i]['data'][$j] = (int) $rows['cantidad'];
+                    }
+                    //
+                }
+                //
+            }
+
+            $datos["fechas"] = $fechasarray["fechas"];
+            $datos["series"] = $datosG;
+
             return $datos;
         } else {
             //

@@ -1181,7 +1181,7 @@ function cargarDatosGraficaBarras() {
             console.log(data);
             //
 
-            valor = data[1];
+            valor = data;
             if (valor == undefined) {
                 swal("Atención", "No Se Encontraros Datos Para Las Fechas Seleccionadas");
             } else {
@@ -1193,7 +1193,7 @@ function cargarDatosGraficaBarras() {
                         text: 'Grafico de sedes'
                     },
                     xAxis: {
-                        categories: valor.nombres
+                        categories: valor.fechas
 
                     },
                     yAxis: {
