@@ -596,10 +596,10 @@ function cargarSelectSedes(valor) {
             //
             if (valor === 1) {
                 //
-                $('#sede').html('<option value="" selected disabled>No hay sedes</option>');
+                $('#sede').html('<option value="0" selected>No hay sedes</option>');
             } else {
                 //
-                $('#sedee').html('<option value="" selected disabled>No hay sedes</option>');
+                $('#sedee').html('<option value="0" selected>No hay sedes</option>');
             }
         }
     }).fail(function (data_error) {
