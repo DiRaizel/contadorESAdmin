@@ -5,7 +5,7 @@
  *
  */
 
-//$con = mysqli_connect("localhost", "lavado", "electronica", "contador");
+//$con = mysqli_connect("localhost", "ingetronik", "electronica", "contador");
 $con = mysqli_connect("localhost", "root", "", "contador");
 // Check connection
 if (mysqli_connect_errno()) {
