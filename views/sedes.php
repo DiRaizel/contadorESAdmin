@@ -57,7 +57,7 @@
                                             <th>Ciudad</th>
                                             <th>Configuración</th>
                                             <th>Estado</th>
-                                            <th>Editar</th
+                                            <th>Editar</th>
                                         </tr>
                                     </tfoot>
                                 </table>
