@@ -117,7 +117,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label>Departamento</label>
-                                    <select onchange="cargarSelectCiudad();" class="form-control" name="departamento" id="departamento" required>
+                                    <select onchange="cargarSelectCiudad(1);" class="form-control" name="departamento" id="departamento" required>
 
                                     </select>
                                 </div>
@@ -180,7 +180,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label>Departamento</label>
-                                    <select onchange="cargarSelectCiudad();" class="form-control" name="departamento" id="departamentoe" required>
+                                    <select onchange="cargarSelectCiudad(2);" class="form-control" name="departamento" id="departamentoe" required>
 
                                     </select>
                                 </div>

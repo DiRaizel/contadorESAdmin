@@ -1070,13 +1070,23 @@ function cargarSelectDepartamentos() {
 }
 
 //
-function cargarSelectCiudad() {
+function cargarSelectCiudad(valor) {
+    //
+    let dep = 0;
+    //
+    if (valor === 1) {
+        //
+        dep = $('#departamento').val();
+    } else {
+        //
+        dep = $('#departamentoe').val();
+    }
     //
     $.ajax({
         url: 'controllers/read.php',
         type: 'post',
         data: {
-            "idDep": $('#departamento').val(),
+            "idDep": dep,
             "accion": "cargarSelectCiudad"
         },
         dataType: 'json'
@@ -1091,10 +1101,22 @@ function cargarSelectCiudad() {
                 campos += '<option value="' + data[i]['idCiu'] + '">' + data[i]['nombre'] + '</option>';
             }
             //
-            $('#ciudad').html(campos);
+            if (valor === 1) {
+                //
+                $('#ciudad').html(campos);
+            } else {
+                //
+                $('#ciudade').html(campos);
+            }
         } else {
             //
-            $('#ciudad').html('<option value="" selected disabled>No hay ciudades</option>');
+            if (valor === 1) {
+                //
+                $('#ciudad').html('<option value="" selected disabled>No hay ciudades</option>');
+            } else {
+                //
+                $('#ciudade').html('<option value="" selected disabled>No hay ciudades</option>');
+            }
         }
     }).fail(function (data_error) {
     });
