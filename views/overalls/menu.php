@@ -70,14 +70,22 @@
                         </p>
                     </a>
                 </li>
-<!--                <li class="nav-item" id="configuracionEMenu">
-                    <a href="#" onclick="ruta('configuracionE')" class="nav-link" id="btnConfiguracionEMenu">
-                        <i class="nav-icon fa fa-cogs"></i>
+                <li class="nav-item" id="tvsMenu">
+                    <a href="#" onclick="ruta('tvs')" class="nav-link" id="btnTvsMenu">
+                        <i class="nav-icon fas fa-tv"></i>
                         <p>
-                            Configuración
+                            Tvs
                         </p>
                     </a>
-                </li>-->
+                </li>
+                <!--                <li class="nav-item" id="configuracionEMenu">
+                                    <a href="#" onclick="ruta('configuracionE')" class="nav-link" id="btnConfiguracionEMenu">
+                                        <i class="nav-icon fa fa-cogs"></i>
+                                        <p>
+                                            Configuración
+                                        </p>
+                                    </a>
+                                </li>-->
                 <li class="nav-item" id="reportesEMenu">
                     <a href="#" onclick="ruta('reportesE')" class="nav-link" id="btnReportesEMenu">
                         <i class="nav-icon fa fa-print"></i>

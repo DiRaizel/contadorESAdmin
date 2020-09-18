@@ -5,12 +5,14 @@ require '../models/mGeneral.php';
 require '../models/mUsuario.php';
 require '../models/mEmpresa.php';
 require '../models/mSede.php';
+require '../models/mTv.php';
 
 //
 $mGeneral = new general();
 $mUsuario = new usuario();
 $mEmpresa = new empresa();
 $mSede = new sede();
+$mTv = new tv();
 
 //
 if ($_POST['accion'] === 'login') {
@@ -148,4 +150,36 @@ if ($_POST['accion'] === 'login') {
     //
     echo json_encode($rsp);
     //
-}
+} else if ($_POST['accion'] === 'cargarTablaTvs') {
+    //
+    $idEmp = (int) $_POST['idEmp'];
+    //
+    $rsp = $mTv->cargarTablaTvs($idEmp);
+    //
+    echo json_encode($rsp);
+    //
+} else if ($_POST['accion'] === 'cargarTvaEditar') {
+    //
+    $idTv = (int) $_POST['idTv'];
+    //
+    $rsp = $mTv->cargarTvaEditar($idTv);
+    //
+    echo json_encode($rsp);
+    //
+} else if ($_POST['accion'] === 'cargarVideosTv') {
+    //
+    $idTv = (int) $_POST['idTv'];
+    //
+    $rsp = $mTv->cargarVideosTv($idTv);
+    //
+    echo json_encode($rsp);
+    //
+}else if ($_POST['accion'] === 'cargarVideoTvaEditar') {
+    //
+    $idVid = (int) $_POST['idVid'];
+    //
+    $rsp = $mTv->cargarVideoTvaEditar($idVid);
+    //
+    echo json_encode($rsp);
+    //
+} 

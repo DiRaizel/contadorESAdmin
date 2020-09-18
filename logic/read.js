@@ -98,6 +98,11 @@ function ruta(valor) {
         window.location.href = "index.php?view=graficaPieE";
         sessionStorage.location = 'graficaPieE';
         //
+    } else if (valor === 'tvs') {
+        //
+        window.location.href = "index.php?view=tvs";
+        sessionStorage.location = 'tvs';
+        //
     }
 }
 
@@ -119,6 +124,7 @@ function cargarConfiguraciones() {
         $('#configuracionEMenu').css('display', 'none');
         $('#graficasEMenu').css('display', 'none');
         $('#reportesEMenu').css('display', 'none');
+        $('#tvsMenu').css('display', 'none');
     } else {
         //
         $('#usuariosMenu').css('display', 'none');
@@ -200,19 +206,21 @@ function cargarConfiguraciones() {
         //
     } else if (sessionStorage.location === 'graficaChartE') {
         //
-//        graficaBarras(datos2, categorias, 'titulo');
-        //
         $('#btngraficasEMenu').addClass('active');
         $('#graficasEMenu').addClass('menu-open');
         $('#btngraficaChartEMenu').addClass('active');
         //
     } else if (sessionStorage.location === 'graficaPieE') {
         //
-
-        //
         $('#btngraficasEMenu').addClass('active');
         $('#graficasEMenu').addClass('menu-open');
         $('#btngraficaPieEMenu').addClass('active');
+        //
+    } else if (sessionStorage.location === 'tvs') {
+        //
+        cargarTablaTvs();
+        //
+        $('#btnTvsMenu').addClass('active');
     }
 }
 
@@ -1311,6 +1319,193 @@ function cargarSelectSedesR() {
         } else {
             //
             $('#sede').html('<option value="todo" selected>Todas</option>');
+        }
+    }).fail(function (data_error) {
+    });
+}
+
+//------------------------------------Tvs---------------------------------------
+
+//
+function cargarTablaTvs() {
+    //
+    var tabla = $('#tablaTvs').DataTable({
+        destroy: true,
+        ajax: {
+            method: "POST",
+            url: "controllers/read.php",
+            data: {
+                idEmp: sessionStorage.idEmp,
+                accion: "cargarTablaTvs"
+            }
+        },
+        columns: [
+            {
+                "data": "idTv"
+            },
+            {
+                "data": "nombre"
+            },
+            {
+                "render": function (data, type, JsonResultRow, meta) {
+                    return '<button onclick="cargarVideosTv(' + JsonResultRow.idTv + ')" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-videosTv-modal-xl"><i class="fas fa fa-video"></i></button>';
+                }
+            },
+            {
+                "render": function (data, type, JsonResultRow, meta) {
+                    //
+                    if (JsonResultRow.estado === 'Activo') {
+                        //
+                        return '<label class="switch"><input onclick="actualizarEstadoTv(' + JsonResultRow.idTv + ')" type="checkbox" checked><span class="slider round"></span></label>';
+                    } else {
+                        //
+                        return '<label class="switch"><input onclick="actualizarEstadoTv(' + JsonResultRow.idTv + ')" type="checkbox"><span class="slider round"></span></label>';
+                    }
+                }
+            },
+            {
+                "render": function (data, type, JsonResultRow, meta) {
+                    return '<button onclick="cargarTvaEditar(' + JsonResultRow.idTv + ')" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-eTv-modal-xl"><i class="fas fa-pen-square"></i></button>';
+                }
+            }
+        ],
+        scrollY: '41vh',
+        responsive: true,
+        language: {
+            "url": "libs/json/Spanish.json"
+        }
+    });
+}
+
+//
+var idTvaEditar = 0;
+
+//
+function cargarTvaEditar(valor) {
+    //
+    idTvaEditar = valor;
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            "idTv": valor,
+            "accion": "cargarTvaEditar"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data[0].sql === 1) {
+            //
+            $('#nombre').val(data[0].nombre);
+            //
+        } else {
+            //
+            swal("Atención", "Error al cargar el tv!");
+        }
+    }).fail(function (data_error) {
+    });
+}
+
+//
+var idTvVideos = 0;
+
+//
+function cargarVideosTv(valor) {
+    //
+    idTvVideos = valor;
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            "idTv": valor,
+            "accion": "cargarVideosTv"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.length > 0) {
+            //
+            var campos = '';
+            //
+            for (var i = 0; i < data.length; i++) {
+                //
+                campos += '<tr><td>' + data[i]['orden'] + '</td>';
+                campos += '<td>' + data[i]['nombre'] + '</td>';
+                campos += '<td>' + data[i]['volumen'] + '</td>';
+                //
+                if (data[i]['estado'] === 'Activo') {
+                    //
+                    campos += '<td><label class="switch"><input onclick="actualizarEstadoVideoTv(' + data[i]['idVid'] + ')" type="checkbox" checked><span class="slider round"></span></label></td>';
+                } else {
+                    campos += '<td><label class="switch"><input onclick="actualizarEstadoVideoTv(' + data[i]['idVid'] + ')" type="checkbox"><span class="slider round"></span></label></td>';
+                }
+                //
+                campos += '<td><button onclick="cargarVideoTvaEditar(' + data[i]['idVid'] + ')" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-eVideoTv-modal-xl"><i class="fas fa-pen-square"></i></button></td></tr>';
+            }
+            //
+            $('#bodyTablaVideosTv').html(campos);
+        } else {
+            //
+            $('#bodyTablaVideosTv').html('');
+        }
+    }).fail(function (data_error) {
+    });
+}
+
+//
+var idVideoTvaEditar = 0;
+var videoTvA = 0;
+var arrayVolumen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+//
+function cargarVideoTvaEditar(valor) {
+    //
+    idVideoTvaEditar = valor;
+    //
+    $.ajax({
+        url: 'controllers/read.php',
+        type: 'post',
+        data: {
+            "idVid": valor,
+            "accion": "cargarVideoTvaEditar"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data[0].sql === 1) {
+            //
+            $('#ordene').val(data[0].orden);
+            //
+            if (data[0].video !== '') {
+                //
+                $('#fileLabel').html(data[0].video);
+                videoTvA = data[0].video;
+            } else {
+                //
+                $('#fileLabel').html('Seleccionar video');
+                videoTvA = '';
+            }
+            //
+            var campos3 = '<option value="0">Selecciona</option>';
+            //
+            for (var i = 0; i < arrayVolumen.length; i++) {
+                //
+                if (data[0].volumen == arrayVolumen[i]) {
+                    //
+                    campos3 += '<option value="' + arrayVolumen[i] + '" selected>' + arrayVolumen[i] + '</option>';
+                } else {
+                    //
+                    campos3 += '<option value="' + arrayVolumen[i] + '">' + arrayVolumen[i] + '</option>';
+                }
+            }
+            //
+            $('#volumene').html(campos3);
+            //
+        } else {
+            //
+            swal("Atención", "Error al cargar el video!");
         }
     }).fail(function (data_error) {
     });

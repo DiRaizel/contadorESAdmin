@@ -53,6 +53,10 @@ if (isset($_GET['view'])) {
         //
         $view->graficaPieE();
         //
+    } else if ($_GET['view'] === 'tvs') {
+        //
+        $view->tvs();
+        //
     }
 } else {
     ///

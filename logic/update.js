@@ -241,10 +241,156 @@ function editarSede() {
             //
         } else if (data === 2) {
             //
-            swal("Atención", "Error al edita la sede!");
+            swal("Atención", "Error al editar la sede!");
         }
     }).fail(function (data_error) {
         console.log(data_error);
         swal("Atención", "Error al conectarse!");
+    });
+}
+
+//------------------------------------Tvs---------------------------------------
+
+//
+function actualizarEstadoTv(valor) {
+    //
+    $.ajax({
+        url: 'controllers/update.php',
+        type: 'post',
+        data: {
+            "idTv": valor,
+            "accion": "actualizarEstadoTv"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.sql === 1) {
+            //
+            if (data.estado === 'Activo') {
+                //
+                toastr.error('Tv Desactivado!');
+            } else {
+                //
+                toastr.success('Tv Activo!');
+            }
+            //
+        } else {
+            //
+            swal("Atención", "Error");
+        }
+    }).fail(function (data_error) {
+    });
+}
+
+//
+function editarTv() {
+    //
+    var formElement = document.getElementById("formEditarTv");
+    formData = new FormData(formElement);
+    //
+    formData.append('accion', 'editarTv');
+    formData.append('idTv', idTvaEditar);
+    //
+    $.ajax({
+        url: 'controllers/update.php',
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data === 1) {
+            //
+            $("#formEditarTv")[0].reset();
+            $('#modalEditarTv').modal('hide');
+            //
+            cargarTablaTvs();
+            //
+            swal("Atención", "Editado!");
+            //
+        } else if (data === 2) {
+            //
+            swal("Atención", "Error al editar el tv!");
+        }
+    }).fail(function (data_error) {
+        console.log(data_error);
+        swal("Atención", "Error al conectarse!");
+    });
+}
+
+//
+function actualizarEstadoVideoTv(valor) {
+    //
+    $.ajax({
+        url: 'controllers/update.php',
+        type: 'post',
+        data: {
+            "idVid": valor,
+            "accion": "actualizarEstadoVideoTv"
+        },
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data.sql === 1) {
+            //
+            if (data.estado === 'Activo') {
+                //
+                toastr.error('Video Desactivado!');
+            } else {
+                //
+                toastr.success('Video Activado!');
+            }
+            //
+        } else {
+            //
+            swal("Atención", "Error");
+        }
+    }).fail(function (data_error) {
+    });
+}
+
+//
+function editarVideo() {
+    //
+    var formElement = document.getElementById("formEditarVideo");
+    formData = new FormData(formElement);
+    //
+    formData.append('accion', 'editarVideo');
+    formData.append('idVid', idVideoTvaEditar);
+    formData.append('idTv', idTvVideos);
+    formData.append('videoA', videoTvA);
+    formData.append('idEmp', sessionStorage.idEmp);
+    //
+    $.ajax({
+        url: 'controllers/update.php',
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        dataType: 'json'
+    }).done(function (data) {
+        //
+        if (data === 1) {
+            //
+            $("#formEditarVideo")[0].reset();
+            $('#modalEditarVideo').modal('hide');
+            //
+            cargarVideosTv(idTvVideos);
+            //
+            swal('Atención','Editado!');
+            //
+        } else if (data === 2) {
+            //
+            swal('Atención','Error al editar el video!');
+        } else {
+            //
+            swal('Atención', 'Error al subir el video!');
+        }
+    }).fail(function (data_error) {
+        console.log(data_error);
+        alert('Error al conectarse!');
     });
 }

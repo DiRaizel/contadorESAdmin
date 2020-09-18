@@ -4,11 +4,13 @@
 require '../models/mUsuario.php';
 require '../models/mEmpresa.php';
 require '../models/mSede.php';
+require '../models/mTv.php';
 
 //
 $mUsuario = new usuario();
 $mEmpresa = new empresa();
 $mSede = new sede();
+$mTv = new tv();
 
 //
 if ($_POST['accion'] === 'guardarUsuario') {
@@ -89,4 +91,89 @@ if ($_POST['accion'] === 'guardarUsuario') {
         //
         echo 2;
     }
+    //
+} else if ($_POST['accion'] === 'guardarTv') {
+    //
+    $idEmp = $_POST['idEmp'];
+    $nombre = $_POST['nombre'];
+    //
+    $rsp = $mTv->guardarTv($idEmp, $nombre);
+    //
+    if ($rsp) {
+        //
+        echo 1;
+    } else {
+        //
+        echo 2;
+    }
+    //
+} else if ($_POST['accion'] === 'guardarVideo') {
+    //
+    $file = $_FILES['file'];
+    $temp = $_FILES['file']['tmp_name'];
+    $video = '';
+    //
+    if ($temp !== '') {
+        //
+        $ext = new SplFileInfo($_FILES['file']['name']);
+        //
+        $video = time() . '.' . $ext->getExtension();
+    }
+    //
+    $idTv = $_POST['idTv'];
+    $idEmp = $_POST['idEmp'];
+    $orden = $_POST['orden'];
+    $volumen = $_POST['volumen'];
+    //
+    $rsp = $mTv->guardarVideo($idTv, $orden, $volumen, $video);
+    //
+    if ($rsp) {
+        //
+        if ($video !== '') {
+            //
+            $ruta0 = "../videos/empresas/" . $idEmp;
+            $ruta = "../videos/empresas/" . $idEmp . '/' . $idTv;
+            //
+            $dir = false;
+            $dir2 = false;
+            //
+            if (is_dir($ruta0)) {
+                //
+                $dir = true;
+            } else {
+                //
+                mkdir($ruta0);
+                //
+                $dir = true;
+            }
+            //
+            if (is_dir($ruta)) {
+                //
+                $dir2 = true;
+            } else {
+                //
+                mkdir($ruta);
+                //
+                $dir2 = true;
+            }
+            //
+            if ($dir && $dir2) {
+                //
+                if (move_uploaded_file($temp, $ruta . '/' . $video)) {
+                    //
+                    echo 1;
+                } else {
+                    //
+                    echo 3;
+                }
+            }
+        } else {
+            //
+            echo 1;
+        }
+    } else {
+        //
+        echo 2;
+    }
+    //
 }
